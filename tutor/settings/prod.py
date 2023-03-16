@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -6,14 +7,16 @@ from .base import *
 
 # Dotenv config:
 
-env_path = '.env'
+env_path = Path(__file__).resolve().parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 # Prod config
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "railway.app"]
+ALLOWED_HOSTS = ["tutor-production-d86c.up.railway.app",
+                "127.0.0.1",
+                ]
 
 SECRET_KEY = os.environ.get("PROD_SECRET_KEY")
 
