@@ -20,6 +20,8 @@ ALLOWED_HOSTS = ["tutor-production-d86c.up.railway.app",
 
 SECRET_KEY = os.environ.get("PROD_SECRET_KEY")
 
+CSRF_TRUSTED_ORIGINS = ["https://tutor-production-d86c.up.railway.app"]
+
 # Database
 
 DATABASES = {
@@ -32,6 +34,8 @@ DATABASES = {
         'PORT': '6073',
     }
 }
+
+# AWS S3
 
 AWS_ACCESS_KEY_ID = os.environ.get("S3_ACCESS_KEY")
 AWS_SECRET_ACCESS_KEY = os.environ.get("S3_SECRET_ACCESS_KEY")
