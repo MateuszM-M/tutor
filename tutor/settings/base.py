@@ -34,7 +34,12 @@ INSTALLED_APPS = [
 
     # 3rd party apps:
     "storages",
+
+    # My apps:
+    'users',
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
