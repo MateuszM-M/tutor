@@ -32,3 +32,20 @@ DATABASES = {
         'PORT': '6073',
     }
 }
+
+AWS_ACCESS_KEY_ID = os.environ.get("S3_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.environ.get("S3_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME")
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_S3_HOST = "s3.eu-central-1.amazonaws.com"
+AWS_S3_REGION_NAME = "eu-central-1"
+
+AWS_QUERYSTRING_AUTH = False
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
