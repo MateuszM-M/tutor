@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     "storages",
 
     # My apps:
-    'users',
+    'learning.apps.LearningConfig',
+    'users.apps.UsersConfig',
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'tutor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +105,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+# URL login redirect
+
+LOGIN_REDIRECT_URL = 'learning:dashboard'
+LOGIN_URL = 'users:login'
+LOGOUT_URL = 'users:logout'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -120,3 +126,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
