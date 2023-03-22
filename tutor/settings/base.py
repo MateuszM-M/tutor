@@ -34,6 +34,8 @@ INSTALLED_APPS = [
 
     # 3rd party apps:
     "storages",
+    "crispy_forms",
+    "crispy_bootstrap5",
 
     # My apps:
     'learning.apps.LearningConfig',
@@ -110,6 +112,7 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = 'learning:dashboard'
 LOGIN_URL = 'users:login'
 LOGOUT_URL = 'users:logout'
+LOGOUT_REDIRECT_URL = 'users:login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -127,4 +130,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CRISPY FORMS SETTINGS
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
