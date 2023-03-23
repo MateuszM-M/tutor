@@ -1,0 +1,39 @@
+{% extends "layout/main.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}tutor | Register{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-4">        
+        <main class="form-signin">
+            <div class="login-form">
+
+                <form action="{% url 'users:register' %}" method="POST">
+
+                    <div class="card text-center">
+                        <h3 class="fw-normal card-text card-header">Register</h3>
+                    </div>
+
+                    <div class="p-5">
+
+                        <div class="form-floating my-2">
+                            {% crispy form %}
+                            {% csrf_token %}
+                            <input class="w-100 btn btn-outline-primary mt-3" type="submit" value="Register">
+                        </div>
+
+                </form>
+
+            </div>
+        </main>
+        <div class="mx-auto mb-3">
+            <a class="" href="{% url 'users:login' %}">Go back to login</a>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -12,8 +12,8 @@ class User(AbstractUser):
     is_student : if True, student features access gained
     is_teacher : if True, teacher features access gained
     """
-    is_student = models.BooleanField('student status', default=False)
-    is_teacher = models.BooleanField('teacher status', default=False)
+    is_student = models.BooleanField('student', default=False)
+    is_teacher = models.BooleanField('teacher', default=False)
 
 
 class Profile(models.Model):
