@@ -13,6 +13,7 @@ urlpatterns = [
         template_name='registration/login.html',
         authentication_form=UserLoginForm),
         name='login'),
+
     path('logout/', 
         auth_views.LogoutView.as_view(), 
         name='logout'),
@@ -20,4 +21,12 @@ urlpatterns = [
     path('register/', 
          views.UserCreateView.as_view(), 
          name='register'),
+
+    path('profile/<str:pk>/',
+         views.ProfileView.as_view(),
+         name='profile'),
+
+    path('profile-edit/<str:pk>',
+         views.ProfileUpdateView.as_view(),
+         name='profile_edit'), 
 ]

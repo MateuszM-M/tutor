@@ -19,13 +19,13 @@ class User(AbstractUser):
 class Profile(models.Model):
     """
     DB model to extend User model with attributes that are not mandatory.
-
     """
-    user = models.ForeignKey(get_user_model(),
-                             related_name='course_created',
+    user = models.OneToOneField(get_user_model(),
                              on_delete=models.CASCADE)
-    profile_picture = models.ImageField(default="images/profile.png",
+    profile_picture = models.ImageField(default="profile_default.jpg",
                                         blank=True, 
+                                        null=True,
                                         upload_to='images/')
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=50, blank=True)
+

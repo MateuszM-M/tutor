@@ -1,9 +1,11 @@
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, HTML
+from crispy_forms.layout import HTML, Field, Layout
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
+
+from.models import Profile
 
 
 class UserLoginForm(AuthenticationForm):
@@ -61,3 +63,9 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_picture', 'bio', 'location']
