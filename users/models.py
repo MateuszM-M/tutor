@@ -1,6 +1,11 @@
+import os
+from io import BytesIO
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
+from PIL import Image
 
 
 class User(AbstractUser):
@@ -23,19 +28,39 @@ class Profile(models.Model):
     user = models.OneToOneField(get_user_model(),
                              on_delete=models.CASCADE)
     profile_picture = models.ImageField(
-        default="profile_default.jpg",
+        default="profile_pictures/profile_default.jpg",
         blank=True, 
-        null=True)
+        null=True,
+        upload_to='profile_pictures/')
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=50, blank=True)
 
-    def save(self, *args, **kwargs):
+    def restore_default_picutre(self, *args, **kwargs):
         """
-        Restores default 
+        Overrides save to restore default profile picture on delete
         """
         if self.profile_picture:
             pass
         else:
-            self.profile_picture = 'profile_default.jpg'
-        super().save(*args, **kwargs)
+            self.profile_picture = 'profile_pictures/profile_default.jpg'
+        return self.profile_picture
+    
+    def resize(self, *args, **kwargs):
+        img = Image.open(self.profile_picture)
+        file_format = img.format
+        if img.height > 200 or img.width > 200:
+            img.thumbnail((200, 200), Image.ANTIALIAS)
+            img_io = BytesIO()
+            img.save(img_io, file_format)
+            img_io.seek(0)
+            suf = SimpleUploadedFile(
+                os.path.split(self.profile_picture.name)[-1],
+                  img_io.read())
+            self.profile_picture.save(suf.name + file_format, suf, save=False)
+        return self.profile_picture
+
+    def save(self, *args, **kwargs):
+        self.profile_picture = self.restore_default_picutre()
+        self.profile_picture = self.resize()
+        super(Profile, self).save(*args, **kwargs)
 
