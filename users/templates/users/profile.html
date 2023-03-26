@@ -11,9 +11,7 @@
                 <div class="card text-center">
                     <h3 class="fw-normal card-text card-header">{{object.user}}</h3>
                 </div>
-                {% if object.profile_picture %}
                 <img src="{{ object.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" width=200>
-                {% endif %}
                 <p class="m-2">Location: {{ object.location }}</p>
                 <p class="m-2">Bio: {{ object.bio }}</p>
 

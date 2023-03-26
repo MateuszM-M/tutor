@@ -14,15 +14,6 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('users:login')
     success_message = "Your profile was created successfully"
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            profile = Profile.objects.create(user=new_user)
-            profile.save()
-            return redirect('users:login')
-
-        return render(request, self.template_name, {'form': form})
     
 class ProfileView(DetailView):
     template_name = 'users/profile.html'

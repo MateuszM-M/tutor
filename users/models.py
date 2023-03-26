@@ -22,10 +22,20 @@ class Profile(models.Model):
     """
     user = models.OneToOneField(get_user_model(),
                              on_delete=models.CASCADE)
-    profile_picture = models.ImageField(default="profile_default.jpg",
-                                        blank=True, 
-                                        null=True,
-                                        upload_to='images/')
+    profile_picture = models.ImageField(
+        default="profile_default.jpg",
+        blank=True, 
+        null=True)
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=50, blank=True)
+
+    def save(self, *args, **kwargs):
+        """
+        Restores default 
+        """
+        if self.profile_picture:
+            pass
+        else:
+            self.profile_picture = 'profile_default.jpg'
+        super().save(*args, **kwargs)
 
