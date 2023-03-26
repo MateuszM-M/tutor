@@ -1,5 +1,4 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -12,7 +11,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     template_name = 'registration/register.html'
     form_class = RegisterForm
     success_url = reverse_lazy('users:login')
-    success_message = "Your profile was created successfully"
+    success_message = "Your account has been created successfully"
 
     
 class ProfileView(DetailView):
@@ -20,10 +19,11 @@ class ProfileView(DetailView):
     model = Profile
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = Profile
     template_name = 'users/edit_profile.html'
     form_class = ProfileUpdateForm
+    success_message = "Your profile has been updated successfully"
     
     def get_success_url(self):
         profile_id = self.kwargs['pk']
