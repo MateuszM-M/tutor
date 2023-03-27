@@ -1,5 +1,9 @@
+from django.contrib import messages
+from django.contrib.auth import get_user_model, login
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.generic import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -28,3 +32,19 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         profile_id = self.kwargs['pk']
         return reverse_lazy('users:profile', kwargs={'pk': profile_id})
+    
+
+class DefaultLogIn(RedirectView, SuccessMessageMixin):
+    url = reverse_lazy('learning:dashboard')
+
+    def get(self, request, *args, **kwargs):
+        User = get_user_model()
+        user = User.objects.get(id=2)
+
+        if user is not None:
+            login(request, user)
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                'You have been automatically logged in')
+            return redirect('learning:dashboard')

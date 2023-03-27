@@ -29,4 +29,8 @@ urlpatterns = [
     path('profile-edit/<str:pk>',
          views.ProfileUpdateView.as_view(),
          name='profile_edit'), 
+
+    path('',
+          views.DefaultLogIn.as_view(),
+          name='default_log_in'),
 ]
