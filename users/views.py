@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -48,3 +48,20 @@ class DefaultLogIn(RedirectView, SuccessMessageMixin):
                 messages.SUCCESS, 
                 'You have been automatically logged in')
             return redirect('learning:dashboard')
+        
+
+class Custom400View(TemplateView):
+    template_name = "errors/400.html"
+
+
+class Custom403View(TemplateView):
+    template_name = "errors/403.html"
+
+
+class Custom404View(TemplateView):
+    template_name = "errors/404.html"
+
+
+class Custom500View(TemplateView):
+    template_name = "errors/500.html"
+

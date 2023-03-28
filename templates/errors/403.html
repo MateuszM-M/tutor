@@ -1,0 +1,13 @@
+{% extends "layout/main.html" %}
+
+{% block title %}Forbidden{% endblock %}
+
+{% block content %}
+
+    <div class="m-auto">
+        <h1>Oops. Forbiddent (403)</h1>
+        <a href="{% url 'learning:dashboard' %}">Go back to main site.</a>
+    </div>
+
+
+{% endblock %}
