@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
-def home(request):
-    return HttpResponse("Hello world!")
+class Dashboard(LoginRequiredMixin, TemplateView):
+    template_name = 'learning/dashboard.html'

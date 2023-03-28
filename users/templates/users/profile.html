@@ -1,0 +1,34 @@
+{% extends "layout/main.html" %}
+
+{% block title %}tutor | {{ object.user }}{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-4">        
+        <main class="form-signin">
+            <div>
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">{{object.user}}</h3>
+                </div>
+                <img src="{{ object.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" >
+                <p class="m-2">Location: {{ object.location }}</p>
+                <p class="m-2">Bio: {{ object.bio }}</p>
+
+            </div>
+            {% if object.user == request.user %}
+            <div class="text-center my-3">
+                <a href="{% url 'users:profile_edit' object.id %}" class="btn btn-outline-primary">Edit profile</a>
+            </div>
+            {% endif %}
+        </main>
+
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

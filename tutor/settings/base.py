@@ -34,10 +34,19 @@ INSTALLED_APPS = [
 
     # 3rd party apps:
     "storages",
+    "crispy_forms",
+    "crispy_bootstrap5",
+
+    # My apps:
+    'learning.apps.LearningConfig',
+    'users.apps.UsersConfig',
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,7 +60,7 @@ ROOT_URLCONF = 'tutor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,6 +108,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+# URL login redirect
+
+LOGIN_REDIRECT_URL = 'learning:dashboard'
+LOGIN_URL = 'users:login'
+LOGOUT_URL = 'users:logout'
+LOGOUT_REDIRECT_URL = 'users:login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -111,7 +126,17 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CRISPY FORMS SETTINGS
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
