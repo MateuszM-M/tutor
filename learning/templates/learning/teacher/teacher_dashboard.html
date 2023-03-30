@@ -1,0 +1,32 @@
+{% extends 'layout/main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-10">        
+        <main>
+            <div>
+
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">Your courses</h3>
+                    <a type="button" class="btn btn-primary mx-auto my-4" href="">Add course</a>
+                </div>
+
+                <div class="p-5">
+                    <div class="list-group">
+                            {% for course in object_list %}
+                                <a href="#" class="list-group-item list-group-item-action">{{ course.title }}</a>
+                            {% empty %}
+                                <p>No courses added yet</p>
+                            {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+
+</div>
+{% endblock %}
