@@ -36,7 +36,7 @@ class Course(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150, unique=True)
     thumbnail = models.ImageField(
-        upload_to=f'course_thumbnails/')
+        upload_to='course_thumbnails/')
     overview = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     
