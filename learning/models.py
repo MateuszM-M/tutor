@@ -27,6 +27,12 @@ class Course(models.Model):
     """
     Table to represent courses
     """
+
+    STATUS_CHOICES = (
+        ('Draft', 'Draft'),
+        ('Published', 'Published')
+    )
+
     owner = models.ForeignKey(get_user_model(),
                               related_name='course_created',
                               on_delete=models.CASCADE)
@@ -39,6 +45,9 @@ class Course(models.Model):
         upload_to='course_thumbnails/')
     overview = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10,
+                            choices=STATUS_CHOICES,
+                            default='Draft')
     
     class Meta:
         ordering = ('-created',)
