@@ -1,0 +1,67 @@
+
+{% if page_obj.paginator.num_pages > 1 %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if page_obj.has_previous %}
+
+                <li class="page-item">
+                    <a href="?page=1" class="page-link"><<</a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link"><</a>
+                </li>
+
+            {% else %}
+
+                <li class="page-item disabled">
+                    <a href="?page=1" class="page-link"><<</a>
+                </li>
+
+                <li class="page-item disabled">
+                    <a href="#" class="page-link"><</a>
+                </li>
+
+            {% endif %}
+
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page_obj.number == page %}
+
+                        <li class="page-item active">
+                            <b class="page-link">{{ page }}</b>
+                        </li>
+
+                    {% elif page > page_obj.number|add:'-2' and page < page_obj.number|add:'2' %}
+
+                        <li class="page-item">
+                            <a href="?page={{ page }}" class="page-link">{{ page }}</a>
+                        </li>
+
+                    {% endif %}
+                {% endfor %}
+
+
+            {% if page_obj.has_next %}
+
+                <li class="page-item">
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-link">></a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">>></a>
+                </li>
+
+            {% else %}
+
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">></a>
+                </li>
+
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">>></a>
+                </li>
+
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

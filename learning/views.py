@@ -13,6 +13,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 class TeacherDashboard(LoginRequiredMixin, ListView):
     model = Course
     template_name = 'learning/teacher/teacher_dashboard.html'
+    paginate_by = 10
     
     def get_queryset(self):
         return Course.objects.filter(owner=self.request.user)
