@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.text import slugify
 from django.views.generic import CreateView, ListView, TemplateView
-from .forms import CreateCourseForm
+from django.views.generic.edit import DeleteView
 
+from .forms import CreateCourseForm
 from .models import Course
 
 
@@ -19,7 +20,7 @@ class TeacherDashboard(LoginRequiredMixin, ListView):
         return Course.objects.filter(owner=self.request.user)
     
 
-class CreateCourse(LoginRequiredMixin, CreateView):
+class CreateCourseView(LoginRequiredMixin, CreateView):
     model = Course
     form_class = CreateCourseForm
     template_name = 'learning/teacher/create_course.html'
@@ -29,3 +30,9 @@ class CreateCourse(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
+    
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    success_url = '/teacher/'
+    template_name = 'learning/teacher/delete_course.html'
