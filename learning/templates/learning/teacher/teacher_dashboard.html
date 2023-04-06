@@ -38,7 +38,7 @@
 
                             <div class="list-group-item">
                                 <div class="text-center mb-2 d-grid col-12">
-                                    <a href="#" class="btn btn-outline-primary">edit</a>
+                                    <a href="{% url 'learning:update_course' course.id %}" class="btn btn-outline-primary">edit</a>
                                 </div>
                                 <div class="text-center mb-2 d-grid col-12">
                                     <a href="{% url 'learning:delete_course' course.id %}" class="btn btn-outline-danger" >delete</a>

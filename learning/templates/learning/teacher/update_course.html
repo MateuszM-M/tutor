@@ -1,0 +1,33 @@
+{% extends 'layout/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-4">        
+        <main>
+            <div>
+
+                <form action="" method="POST" enctype="multipart/form-data">
+
+                    <div class="card text-center">
+                        <h3 class="fw-normal card-text card-header">Create course</h3>
+                    </div>
+
+                    <div class="p-5">
+
+                        <div class="form-floating my-2">
+                            {% crispy form %}
+                            <input class="w-100 btn btn-primary mt-3" type="submit" value="Save">
+                        </div>
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+
+</div>
+{% endblock %}
