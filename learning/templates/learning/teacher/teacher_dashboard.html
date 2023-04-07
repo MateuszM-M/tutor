@@ -11,6 +11,15 @@
                 <div class="card text-center">
                     <h3 class="fw-normal card-text card-header">Your courses</h3>
                     <a type="button" class="btn btn-primary mx-auto my-4" href="{% url 'learning:create_course' %}">Create course</a>
+
+                        <form method="get">
+                            <div>
+                                {{filter.form}}
+
+                            <input class=" btn btn-outline-primary mt-3" type="submit" value="Filter">
+                            </div>
+                        </form>
+
                 </div>
 
                 <div class="p-5">
