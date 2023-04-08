@@ -1,0 +1,74 @@
+{% extends 'layout/main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-10">        
+        <main>
+            <div>
+
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">Your courses</h3>
+                    <a type="button" class="btn btn-primary mx-auto my-4" href="{% url 'learning:create_course' %}">Create course</a>
+
+                        <form method="get">
+                            <div>
+                                {{filter.form}}
+
+                            <input class=" btn btn-outline-primary mt-3" type="submit" value="Filter">
+                            </div>
+                        </form>
+
+                </div>
+
+                <div class="p-5">
+                    <div class="list-group">
+                        {% for course in object_list %}
+                        <div id="course" class="my-1 d-flex list-group-horizontal">
+
+                            
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+
+                                <div class="d-inline-block">
+                                    <img src="{{ course.thumbnail.url }}" width=250 height=150>
+                                </div>
+
+                                <div class="d-inline-block">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ course.title }}</h5>
+                                    </div>
+
+                                    <p class="mb-1">{{ course.overview }}</p>
+                                    <small>100$</small>
+                                </div>
+                            </a>
+                            
+
+                            <div class="list-group-item">
+                                <div class="text-center mb-2 d-grid col-12">
+                                    <a href="{% url 'learning:update_course' course.id %}" class="btn btn-outline-primary">edit</a>
+                                </div>
+                                <div class="text-center mb-2 d-grid col-12">
+                                    <a href="{% url 'learning:delete_course' course.id %}" class="btn btn-outline-danger" >delete</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% empty %}
+                            <p>No courses added yet</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        {% include "layout/pagination.html" %}
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

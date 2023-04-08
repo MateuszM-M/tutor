@@ -9,15 +9,24 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mx-4">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Find courses</a>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Subjects
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for subject in subjects %}
+                    <a class="dropdown-item" href="#">{{subject}}</a>
+                    {% endfor %}
+                </div>
             </li>
+
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="#">Learning</a>
+                <a class="nav-link" href="#">Learn</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Teaching</a>
+                <a class="nav-link" href="{% url 'learning:teacher_dashboard' %}">Teach</a>
             </li>
             {% endif %}
         </ul>
@@ -33,6 +42,9 @@
 
         <ul class="navbar-nav ml-auto mx-4">
             {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">Messages</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Plans</a>
             </li>
