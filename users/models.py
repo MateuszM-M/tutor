@@ -24,6 +24,13 @@ class User(AbstractUser):
 class Profile(models.Model):
     """
     DB model to extend User model with attributes that are not mandatory.
+
+    Attributes:
+    -----------
+    user : user object related to profile
+    profile_picture : profile picture
+    bio : information about user
+    location : user location
     """
     user = models.OneToOneField(get_user_model(),
                              on_delete=models.CASCADE)
@@ -37,7 +44,7 @@ class Profile(models.Model):
 
     def restore_default_picutre(self, *args, **kwargs):
         """
-        Overrides save to restore default profile picture on delete
+        Restores default profile picture on delete
         """
         if self.profile_picture:
             pass
@@ -46,6 +53,9 @@ class Profile(models.Model):
         return self.profile_picture
     
     def resize(self, *args, **kwargs):
+        """
+        Resizes the profile picture on save
+        """
         img = Image.open(self.profile_picture)
         file_format = img.format
         if img.height > 200 or img.width > 200:
@@ -60,6 +70,9 @@ class Profile(models.Model):
         return self.profile_picture
 
     def save(self, *args, **kwargs):
+        """
+        Overrise save to add additional methods
+        """
         self.profile_picture = self.restore_default_picutre()
         self.profile_picture = self.resize()
         super(Profile, self).save(*args, **kwargs)

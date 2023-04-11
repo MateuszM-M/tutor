@@ -6,9 +6,9 @@ from django.db import models
 
 class Subject(models.Model):
     """
-    Table to represent subjects - a course category.
+    A class to represent subjects - a course category.
     
-    Attributes
+    Attributes:
     ----------
     title : title of subject
     slug : slug of subject
@@ -25,7 +25,19 @@ class Subject(models.Model):
 
 class Course(models.Model):
     """
-    Table to represent courses
+    A class to represent courses.
+
+    Attributes:
+    -----------
+
+    owner : creator of the course, related to user
+    subject : related to subject object
+    title : title of the course
+    slug : slug of the course, made automatically
+    thumbnail : image to represent the course
+    overview : basic info about the course
+    created : when the course was created
+    status : status of the course, to choose from the STATUS_CHOICES
     """
 
     STATUS_CHOICES = (
@@ -58,7 +70,14 @@ class Course(models.Model):
 
 class Module(models.Model):
     """
-    Table to represent modules
+    A class to represent module
+
+    Attributes:
+    -----------
+
+    course : course relation
+    title : title of the module
+    description : description of the module
     """
     course = models.ForeignKey(Course, 
                                related_name='modules',
@@ -72,7 +91,12 @@ class Module(models.Model):
 
 class Content(models.Model):
     """
-    Table to represent contents
+    A class to represent content
+
+    module : module relation
+    content_type : indicates content type column
+    object_id : priamry key of related object
+    item : indicates related object based on two abovementioned objects
     """
     module = models.ForeignKey(Module, 
                                related_name='contents',
@@ -88,7 +112,14 @@ class Content(models.Model):
 
 class ItemBase(models.Model):
     """
-    Abstract table to represent different type items
+    Abstract class to represent different type items
+
+    Attributes:
+    -----------
+    owner : related user
+    title : title of the item
+    created : date created
+    updated : date updated
     """
     owner = models.ForeignKey(get_user_model(),
                               on_delete=models.CASCADE,
@@ -106,6 +137,10 @@ class ItemBase(models.Model):
 
 class Text(ItemBase):
     """
-    Table to represent item in type of text
+    A class to represent item in type of text
+
+    Attributes:
+    -----------
+    content : text content of item
     """
     content = models.TextField()

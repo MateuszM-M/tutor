@@ -3,6 +3,9 @@ from .models import Course
 
 
 class CreateUpdateCourseForm(forms.ModelForm):
+    """
+    A class to represent create and update form for a Course.
+    """
     class Meta:
         model = Course
         fields = [

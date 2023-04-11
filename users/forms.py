@@ -9,7 +9,14 @@ from.models import Profile
 
 
 class UserLoginForm(AuthenticationForm):
+    """
+    A class to represent user login form.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Constructs the login form.
+        Uses form helper to render fields as a floating fields
+        """
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.layout = Layout(
@@ -19,7 +26,14 @@ class UserLoginForm(AuthenticationForm):
         
 
 class RegisterForm(forms.ModelForm):
+    """
+    A class to represent register form.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Constructs the register form
+        Uses form helper to render register fields as floating fields
+        """
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -45,6 +59,7 @@ class RegisterForm(forms.ModelForm):
         help_texts = {'username': None}
 
     def clean_password2(self):
+        """Checks is passwords are the same"""
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
             raise forms.ValidationError("Passwords must be the same.")
@@ -58,6 +73,7 @@ class RegisterForm(forms.ModelForm):
         return self.cleaned_data
     
     def save(self, commit=True):
+        """Overrides save to set password"""
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
         if commit:
@@ -66,6 +82,9 @@ class RegisterForm(forms.ModelForm):
     
 
 class ProfileUpdateForm(forms.ModelForm):
+    """
+    A class to represent profile update form
+    """
     class Meta:
         model = Profile
         fields = ['profile_picture', 'bio', 'location']
