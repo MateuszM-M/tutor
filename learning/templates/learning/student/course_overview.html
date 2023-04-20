@@ -1,0 +1,45 @@
+{% extends 'layout/main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<div class="container d-flex justify-content-around my-auto">
+
+    <div class="card col-md-6">        
+        <main class="form-signin">
+            <div>
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">Course:</h3>
+                </div>
+                <img src="{{ object.thumbnail.url }}" class="mx-auto d-block" alt="" id="profile_picture"  width=250 height=150>
+                <p class="m-2">Title: {{ object.title }}</p>
+                <p class="m-2">Overview: {{ object.overview }}</p>
+
+            </div>
+        </main>
+
+    </div>
+
+
+    <div class="card col-md-4">        
+        <main class="form-signin">
+            <div>
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">Course author:</h3>
+                </div>
+                <img src="{{ object.owner.profile.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" >
+                <p class="m-2">User: {{ object.owner }}</p>
+                <p class="m-2">Location: {{ profile.location }}</p>
+                <p class="m-2">Bio: {{ profile.bio }}</p>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

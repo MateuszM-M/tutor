@@ -28,7 +28,7 @@
                         <div id="course" class="my-1 d-flex list-group-horizontal">
 
                             
-                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            <a href="{% url 'learning:detail_course' course.slug %}" class="list-group-item list-group-item-action" aria-current="true">
 
                                 <div class="d-inline-block">
                                     <img src="{{ course.thumbnail.url }}" width=250 height=150>

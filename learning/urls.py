@@ -22,4 +22,8 @@ urlpatterns = [
     path('teacher/update_course/<str:pk>', 
          views.CourseUpdateView.as_view(), 
          name='update_course'),
+
+     path('course/overview/<str:slug>/',
+          views.CourseDetailView.as_view(),
+          name='detail_course'),
 ]
