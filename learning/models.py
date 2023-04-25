@@ -74,7 +74,6 @@ class Module(models.Model):
 
     Attributes:
     -----------
-
     course : course relation
     title : title of the module
     description : description of the module
@@ -83,7 +82,7 @@ class Module(models.Model):
                                related_name='modules',
                                on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    discription = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     
     def __str__(self):
         return self.title
@@ -93,6 +92,8 @@ class Content(models.Model):
     """
     A class to represent content
 
+    Attributes:
+    -----------
     module : module relation
     content_type : indicates content type column
     object_id : priamry key of related object
@@ -105,6 +106,9 @@ class Content(models.Model):
                                       on_delete=models.CASCADE,
                                       limit_choices_to={'model__in':(
                                           'text',
+                                          'video',
+                                          'image',
+                                          'file'
                                           )})
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
@@ -144,3 +148,36 @@ class Text(ItemBase):
     content : text content of item
     """
     content = models.TextField()
+    
+
+class Image(ItemBase):
+    """
+    A class to represent item in type of image
+
+    Attributes:
+    -----------
+    image : text content of item
+    """
+    image = models.FileField(upload_to='images')
+    
+
+class Video(ItemBase):
+    """
+    A class to represent item in type of vido
+
+    Attributes:
+    -----------
+    video : text content of item
+    """
+    url = models.URLField()
+
+
+class File(ItemBase):
+    """
+    A class to represent item in type of other file
+
+    Attributes:
+    -----------
+    file : text content of item
+    """
+    other_file = models.FileField(upload_to='files')
