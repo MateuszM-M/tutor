@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Subject, Course, Module
 
+
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
     """
@@ -13,13 +14,14 @@ class SubjectAdmin(admin.ModelAdmin):
     """
     list_display = ['title', 'slug']
     prepopulated_fields = {'slug': ('title',)}
-    
+
 
 class ModuleInline(admin.StackedInline):
     """
     A class to represent a inlined Module in Course in admin panel.
     """
     model = Module
+
     
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -28,7 +30,7 @@ class CourseAdmin(admin.ModelAdmin):
 
     Attributes:
     -----------
-    list_display : defines user attributes displayed in list view
+    list_display : defines course attributes displayed in list view
     list_filter : allows filtering by created date and subject
     search_fields : allows searching by title and overvie
     prepopulated_fields : autmatically populate slug field

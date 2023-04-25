@@ -90,3 +90,10 @@ class CourseDetailView(DetailView, LoginRequiredMixin):
             id=self.object.owner.profile.id)
         return context
 
+
+class LearningView(DetailView, LoginRequiredMixin):
+    """
+    A class to represent learning view for user that bought course.
+    """
+    model = Course
+    template_name = 'learning/student/learning_view.html'
