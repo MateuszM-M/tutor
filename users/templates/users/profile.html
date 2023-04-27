@@ -18,7 +18,7 @@
             </div>
             {% if object.user == request.user %}
             <div class="text-center my-3">
-                <a href="{% url 'users:profile_edit' object.id %}" class="btn btn-outline-primary">Edit profile</a>
+                <a href="{% url 'users:profile_edit' object.slug %}" class="btn btn-outline-primary">Edit profile</a>
             </div>
             {% endif %}
         </main>

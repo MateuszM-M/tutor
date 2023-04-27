@@ -22,11 +22,11 @@ urlpatterns = [
          views.UserCreateView.as_view(), 
          name='register'),
 
-    path('profile/<str:pk>/',
+    path('profile/<str:slug>/',
          views.ProfileView.as_view(),
          name='profile'),
 
-    path('profile-edit/<str:pk>',
+    path('profile-edit/<str:slug>',
          views.ProfileUpdateView.as_view(),
          name='profile_edit'), 
 

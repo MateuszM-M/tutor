@@ -15,11 +15,11 @@ urlpatterns = [
          views.CourseCreateView.as_view(), 
          name='create_course'),
 
-    path('teacher/delete_course/<str:pk>', 
+    path('teacher/delete_course/<str:slug>', 
          views.CourseDeleteView.as_view(), 
          name='delete_course'),    
 
-    path('teacher/update_course/<str:pk>', 
+    path('teacher/update_course/<str:slug>', 
          views.CourseUpdateView.as_view(), 
          name='update_course'),
 

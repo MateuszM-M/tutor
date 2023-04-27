@@ -16,7 +16,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subject in subjects %}
-                    <a class="dropdown-item" href="#">{{subject}}</a>
+                    <a class="dropdown-item" href="#">{{subject.title}}</a>
                     {% endfor %}
                 </div>
             </li>
@@ -52,7 +52,7 @@
                 <a class="nav-link" href="#">Cart</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:profile' request.user.profile.id %}">{{ request.user }}</a>
+                <a class="nav-link" href="{% url 'users:profile' request.user.profile.slug %}">{{ request.user }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>

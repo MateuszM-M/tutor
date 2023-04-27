@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
+from django.utils.text import slugify
 from PIL import Image
 
 
@@ -12,6 +13,7 @@ class User(AbstractUser):
     """
     DB model to alter built-in Django User model in future
     """
+    pass
 
 
 class Profile(models.Model):
@@ -34,6 +36,7 @@ class Profile(models.Model):
         upload_to='profile_pictures/')
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=50, blank=True)
+    slug = models.SlugField(max_length=150, unique=True)
 
     def restore_default_picutre(self, *args, **kwargs):
         """
@@ -61,6 +64,14 @@ class Profile(models.Model):
                   img_io.read())
             self.profile_picture.save(suf.name + file_format, suf, save=False)
         return self.profile_picture
+    
+    def add_slug(self, *args, **kwargs):
+        """
+        Adds slug to profile.
+        """
+        self.slug = slugify(self.user.get_username())
+        return self.slug
+
 
     def save(self, *args, **kwargs):
         """
@@ -68,5 +79,6 @@ class Profile(models.Model):
         """
         self.profile_picture = self.restore_default_picutre()
         self.profile_picture = self.resize()
+        self.slug = self.add_slug()
         super(Profile, self).save(*args, **kwargs)
 

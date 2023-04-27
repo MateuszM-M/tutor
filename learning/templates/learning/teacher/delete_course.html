@@ -13,14 +13,14 @@
                 <form action="" method="POST">
 
                     <div class="card text-center">
-                        <h3 class="fw-normal card-text card-header">{{ object }} delete</h3>
+                        <h3 class="fw-normal card-text card-header">{{ object.title }} delete</h3>
                     </div>
 
                     <div class="p-5">
 
                         <div class="form-floating my-2">
                             {% csrf_token %}
-                            <p>Are you sure you want to delete "{{ object }}"?</p>
+                            <p>Are you sure you want to delete "{{ object.title }}"?</p>
                             <input class="w-100 btn btn-danger mt-3" type="submit" value="delete">
                         </div>
 
