@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.views.generic import CreateView, TemplateView, UpdateView
@@ -62,12 +63,15 @@ class TeacherDashboard(OwnerCourseMixin, FilterView):
     filterset_class = CourseFilter
         
 
-class CreateCourseView(OwnerCourseEditMixin, CreateView):
+class CourseCreateView(PermissionRequiredMixin, 
+                       OwnerCourseEditMixin,
+                       CreateView):
     """
     A class to represent create course view.
     """
     template_name = 'learning/teacher/create_course.html'
     success_url = '/teacher/'
+    permission_required = 'learning.add_course'
 
     def form_valid(self, form):
         """
@@ -75,23 +79,29 @@ class CreateCourseView(OwnerCourseEditMixin, CreateView):
         slug from slugyfying the course title
         """
         form.instance.slug = slugify(form.instance.title)
-        return super(CreateCourseView, self).form_valid(form)
+        return super(CourseCreateView, self).form_valid(form)
     
 
-class CourseDeleteView(OwnerCourseMixin, DeleteView):
+class CourseDeleteView(PermissionRequiredMixin,
+                       OwnerCourseMixin, 
+                       DeleteView):
     """
     A class to represent delete couse view.
     """
     success_url = '/teacher/'
     template_name = 'learning/teacher/delete_course.html'
+    permission_required = 'learning.delete_course'
 
 
-class CourseUpdateView(OwnerCourseEditMixin, UpdateView):
+class CourseUpdateView(PermissionRequiredMixin,
+                       OwnerCourseEditMixin,
+                       UpdateView):
     """
     A class to represent update couse view.
     """
     template_name = 'learning/teacher/update_course.html'
     success_url = '/teacher/'
+    permission_required = 'learning.change_course'
 
 
 class CourseDetailView(OwnerCourseMixin, DetailView):

@@ -4,8 +4,9 @@ from crispy_forms.layout import HTML, Field, Layout
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
+from .signals import teacher_created
 
-from.models import Profile
+from .models import Profile
 
 
 class UserLoginForm(AuthenticationForm):
@@ -52,10 +53,14 @@ class RegisterForm(forms.ModelForm):
                                widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password',
                                 widget=forms.PasswordInput)
+    is_student = forms.BooleanField(label='Student',
+                                    required=False)
+    is_teacher = forms.BooleanField(label='Teacher',
+                                    required=False)
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'is_student', 'is_teacher')
+        fields = ('username', 'email')
         help_texts = {'username': None}
 
     def clean_password2(self):
@@ -73,11 +78,14 @@ class RegisterForm(forms.ModelForm):
         return self.cleaned_data
     
     def save(self, commit=True):
-        """Overrides save to set password"""
+        """Overrides save to set password and send signal"""
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
+            teacher_created.send(sender='user_created',
+                                 is_teacher=self.cleaned_data['is_teacher'],
+                                 instance=user)
         return user
     
 

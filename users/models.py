@@ -10,15 +10,8 @@ from PIL import Image
 
 class User(AbstractUser):
     """
-    DB model to alter built-in Django User model.
-    
-    Attributes
-    ----------
-    is_student : if True, student features access gained
-    is_teacher : if True, teacher features access gained
+    DB model to alter built-in Django User model in future
     """
-    is_student = models.BooleanField('student', default=False)
-    is_teacher = models.BooleanField('teacher', default=False)
 
 
 class Profile(models.Model):
