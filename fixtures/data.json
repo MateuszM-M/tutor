@@ -1396,6 +1396,14 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "pyggm6h40rlf4ly9nr86hsbv2pt5qak6",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnWyuvYlPScwdqPTQIokeKkirg7spQC2jcz7zCZ9m3MeytrntRcDZjL78YkrzJ3oE-aH4uVZd7WiW1X7EmbvS9a3rfT_TsYqY295lgRoBSXNDJCIo1OAJWCOBQfhkBSwUNQQYc8AFZXPDORV0_JfL74djiE:1ps7zx:oAkAGDhxV9v-p_E3azI869Yd1adauEfLaRsGP69Pon8",
+    "expire_date": "2023-05-11T20:13:49.689Z"
+  }
+},
+{
   "model": "learning.subject",
   "pk": 1,
   "fields": {
@@ -1452,11 +1460,25 @@
   }
 },
 {
+  "model": "learning.course",
+  "pk": 8,
+  "fields": {
+    "owner": 2,
+    "subject": 1,
+    "title": "Python",
+    "slug": "python",
+    "thumbnail": "course_thumbnails/Screenshot_from_2022-11-18_21-28-27_TutOPuA.png",
+    "overview": "bla bla bla bla",
+    "created": "2023-04-27T17:48:50.009Z",
+    "status": "Draft"
+  }
+},
+{
   "model": "users.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$jxPR5OarEqQYsLTu8mVOt2$YFt4Nbwl4/oSKr+DPb7WddKW7y9bCE3tRwIMdylkD8g=",
-    "last_login": "2023-04-27T17:20:06Z",
+    "last_login": "2023-04-27T20:07:05.968Z",
     "is_superuser": true,
     "username": "mateusz",
     "first_name": "",
@@ -1476,7 +1498,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$390000$xQbNr5mJQ4mV1unXDb0gY5$Lexh7JVyw+0ihFYIDc8h0jupw0HUF2U0uxVlUNaLsQ8=",
-    "last_login": "2023-04-27T17:17:49Z",
+    "last_login": "2023-04-27T20:13:49.656Z",
     "is_superuser": false,
     "username": "user01",
     "first_name": "",
@@ -1768,7 +1790,8 @@
     "user": 1,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "mateusz"
   }
 },
 {
@@ -1778,7 +1801,8 @@
     "user": 2,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "user01"
   }
 },
 {
@@ -1788,7 +1812,8 @@
     "user": 3,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "user02"
   }
 },
 {
@@ -1798,7 +1823,8 @@
     "user": 4,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "user03"
   }
 },
 {
@@ -1808,7 +1834,8 @@
     "user": 5,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "user04"
   }
 },
 {
@@ -1818,7 +1845,8 @@
     "user": 6,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "user05"
   }
 },
 {
@@ -1828,7 +1856,8 @@
     "user": 7,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "student01"
   }
 },
 {
@@ -1838,7 +1867,8 @@
     "user": 8,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "student02"
   }
 },
 {
@@ -1848,7 +1878,8 @@
     "user": 9,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "student03"
   }
 },
 {
@@ -1858,7 +1889,8 @@
     "user": 10,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "student04"
   }
 },
 {
@@ -1868,7 +1900,8 @@
     "user": 11,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "student05"
   }
 },
 {
@@ -1878,7 +1911,8 @@
     "user": 12,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "teacher01"
   }
 },
 {
@@ -1888,7 +1922,8 @@
     "user": 13,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "teacher02"
   }
 },
 {
@@ -1898,7 +1933,8 @@
     "user": 14,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "teacher03"
   }
 },
 {
@@ -1908,7 +1944,8 @@
     "user": 15,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "teacher04"
   }
 },
 {
@@ -1918,7 +1955,8 @@
     "user": 16,
     "profile_picture": "profile_pictures/profile_default.jpg",
     "bio": "",
-    "location": ""
+    "location": "",
+    "slug": "teacher05"
   }
 }
 ]
