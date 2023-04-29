@@ -10,10 +10,14 @@
             <div id="sidebar" class="collapse collapse-horizontal show border-end">
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
 
+                    {% if course.owner == request.user %}
+                        <a href="{% url 'learning:course_module_update' course.id %}" class="btn btn-outline-primary m-1">Manage modules</a>
+                    {% endif %}
+
                     {% for module in object.modules.all %}
-                        <a href="#" data-bs-toggle="collapse" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"> <span>{{ module }}</span> </a>
+                        <a href="" data-bs-toggle="collapse" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"> <span>{{ module }}</span> </a>
                     {% empty %}
-                        <p>No modules</p>
+                        <p class="m-1">No modules</p>
                     {% endfor %}
 
                 </div>
@@ -22,13 +26,15 @@
         <main class="col ps-md-2 pt-2">
             <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Course Menu</a>
             <div class="page-header pt-3">
-                <h2>{{object}}</h2>
+                <h2>{{ object }}</h2>
             </div>
 
             <hr>
             <div class="row">
                 <div class="col-12">
-                    Course content
+                    {% block learning_view_content %}
+                    bla bla bla
+                    {% endblock learning_view_content %}
                 </div>
             </div>
         </main>
@@ -36,4 +42,4 @@
 </div>
 
 
-{% endblock %}
+{% endblock content %}

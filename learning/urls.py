@@ -30,4 +30,8 @@ urlpatterns = [
      path('course/learning/<str:slug>/',
           views.LearningView.as_view(),
           name='learning_view'),
+
+     path('course/formset/<str:pk>/',
+          views.CourseModuleUpdateView.as_view(),
+          name='course_module_update')
 ]

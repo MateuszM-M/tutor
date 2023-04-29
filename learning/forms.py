@@ -1,5 +1,7 @@
 from django import forms
-from .models import Course
+from django.forms.models import inlineformset_factory
+
+from .models import Course, Module
 
 
 class CreateUpdateCourseForm(forms.ModelForm):
@@ -15,3 +17,10 @@ class CreateUpdateCourseForm(forms.ModelForm):
             'thumbnail', 
             'status',
             ]
+        
+ModuleFormSet = inlineformset_factory(Course,
+                                      Module,
+                                      fields=['title', 
+                                              'description'],
+                                              extra=3,
+                                              can_delete=True)

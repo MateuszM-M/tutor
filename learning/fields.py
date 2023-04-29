@@ -15,11 +15,11 @@ class OrderField(models.PositiveIntegerField):
     def pre_save(self, model_instance, add):
         if getattr(model_instance, self.attname) is None:
             try:
-                qs = self.for_fields.objects.all()
+                qs = self.model.objects.all()
                 if self.for_fields:
-                    query = {fields: getattr(model_instance, field) for field in self.for_field}
+                    query = {field: getattr(model_instance, field) for field in self.for_fields}
                     qs = qs.filter(**query)
-                last_item = qs.filter(self.attname)
+                last_item = qs.latest(self.attname)
                 value = last_item.order + 1
             except ObjectDoesNotExist:
                 value = 0
