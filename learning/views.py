@@ -1,5 +1,7 @@
+from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
+from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.text import slugify
@@ -12,7 +14,7 @@ from users.models import Profile
 
 from .filters import CourseFilter
 from .forms import CreateUpdateCourseForm, ModuleFormSet
-from .models import Course
+from .models import Content, Course, Module
 
 
 class OwnerMixin(object):
@@ -141,6 +143,9 @@ class LearningView(DetailView, LoginRequiredMixin):
 
 
 class CourseModuleUpdateView(TemplateResponseMixin, View):
+    """
+    A class to represent course module update view
+    """
     template_name = 'learning/teacher/modules_formset.html'
     course = None
 
@@ -178,3 +183,75 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
             return redirect('learning:learning_view', slug=course.slug)
         return self.render_to_response({'course': course,
                                         'formset': formset})
+    
+
+class ContentCreateUpdateView(TemplateResponseMixin, View):
+    """
+    A class to represent content creation and update view.
+    """
+    module = None
+    model = None
+    obj = None
+    template_name = 'learning/teacher/create_update_content.html'
+
+    def get_model(self, model_name):
+        """
+        Checks if model name is one content types.
+        """
+        if model_name in ['text', 'video', 'image', 'file']:
+            return apps.get_model(app_label='courses',
+                                  model_name=model_name)
+        return None
+    
+    def get_form(self, model, *args, **kwargs):
+        """
+        Dynamically builds form.
+        """
+        Form = modelform_factory(model, exclude=['owner',
+                                                 'order',
+                                                 'created',
+                                                 'updated'])
+        return Form(*args, **kwargs)
+    
+    def dispatch(self, request, module_id, model_name, id=None):
+        """
+        Handles class parameters.
+        """
+        self.module = get_object_or_404(Module,
+                                       id=module_id,
+                                       course__owner=request.user)
+        self.model = self.get_model(model_name)
+        if id:
+            self.obj = get_object_or_404(self.model,
+                                         id=id,
+                                         owner=request.user)
+        return super(ContentCreateUpdateView,
+           self).dispatch(request, module_id, model_name, id)
+    
+    def get(self, request, module_id, model_name, id=None):
+        """
+        Handels get method.
+        """
+        form = self.get_form(self.model, instance=self.obj)
+        return self.render_to_response({'form': form,
+                                        'object': self.obj})
+
+    def post(self, request, module_id, model_name, id=None):
+        """
+        Handles post method.
+        """
+        form = self.get_form(self.model,
+                             instance=self.obj,
+                             data=request.POST,
+                             files=request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.owner = request.user
+            obj.save()
+            if not id:
+                # new content
+                Content.objects.create(module=self.module,
+                                       item=obj)
+            return redirect('module_content_list', self.module.id)
+        return self.render_to_response({'form': form,
+                                        'object': self.obj})
