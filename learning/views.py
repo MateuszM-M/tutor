@@ -2,7 +2,7 @@ from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
 from django.forms.models import modelform_factory
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.views.generic import CreateView, TemplateView, UpdateView
@@ -199,7 +199,7 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
         Checks if model name is one content types.
         """
         if model_name in ['text', 'video', 'image', 'file']:
-            return apps.get_model(app_label='courses',
+            return apps.get_model(app_label='learning',
                                   model_name=model_name)
         return None
     
@@ -275,11 +275,11 @@ class ModuleContentListView(TemplateResponseMixin, View):
     """
     A class to handle the list of content.
     """
-    template_name = 'courses/manage/module/content_list.html'
+    template_name = 'learning/teacher/contents.html'
 
     def get(self, request, module_id):
         module = get_object_or_404(Module,
                                    id=module_id,
                                    course__owner=request.user)
-
-        return self.render_to_response({'module': module})
+        return self.render_to_response({'module': module,
+                                        'course': module.course})

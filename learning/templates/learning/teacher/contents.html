@@ -1,12 +1,12 @@
 {% extends 'learning/student/learning_view.html' %}
-{% lead course %}
+{% load course %}
 
 
 {% block title %}
     Module {{ module.order|add:1 }}: {{ module.title }}
 {% endblock %}
 
-{% block content learning_view_content %}
+{% block learning_view_content %}
 <div class="container d-flex justify-content-around my-auto">
     <div class="card col-md-10">
         <main>
@@ -34,10 +34,10 @@
                     </div>
                     <h3>Dodaj nową treść</h3>
                     <ul class="content-types">
-                        <li><a href="{% url 'module_content_create' module.id 'text' %}">Tekst</a></li>
-                        <li><a href="{% url 'module_content_create' module.id 'image' %}">Obraz</a></li>
-                        <li><a href="{% url 'module_content_create' module.id 'video' %}">Wideo</a></li>
-                        <li><a href="{% url 'module_content_create' module.id 'file' %}">Plik</a></li>
+                        <li><a href="{% url 'learning:module_content_create' module.id 'text' %}">Tekst</a></li>
+                        <li><a href="{% url 'learning:module_content_create' module.id 'image' %}">Obraz</a></li>
+                        <li><a href="{% url 'learning:module_content_create' module.id 'video' %}">Wideo</a></li>
+                        <li><a href="{% url 'learning:module_content_create' module.id 'file' %}">Plik</a></li>
                     </ul>
                 </div>
             </div>
