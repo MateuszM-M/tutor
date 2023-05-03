@@ -1,0 +1,49 @@
+{% extends 'learning/student/learning_view.html' %}
+{% lead course %}
+
+
+{% block title %}
+    Module {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %}
+
+{% block content learning_view_content %}
+<div class="container d-flex justify-content-around my-auto">
+    <div class="card col-md-10">
+        <main>
+            <div>
+                <div class="card text-center">
+                    <h3 class="fw-normal card-text card-header">
+                        Module: {{ module.order|add:1 }}: {{ module.title }}
+                    </h3>
+
+                    <div class="module-contents">
+                        {% for content in module.contents.all %}
+                        <div data-id="{{ content.id }}">
+                            {% with item=content.item %}
+                            <p>{{ item }} ({{ item|model_name }})</p>
+                            <a href="{% url 'module_content_update' module.id item|model_name item.id %}">Edytuj</a>
+                            <form action="{% url 'module_content_delete' content.id %}" method="post">
+                                <input type="submit" value="Usuń">
+                                {% csrf_token %}
+                            </form>
+                            {% endwith %}
+                        </div>
+                        {% empty %}
+                        <p>Ten moduł nie zawiera jeszcze treści. </p>
+                        {% endfor %}
+                    </div>
+                    <h3>Dodaj nową treść</h3>
+                    <ul class="content-types">
+                        <li><a href="{% url 'module_content_create' module.id 'text' %}">Tekst</a></li>
+                        <li><a href="{% url 'module_content_create' module.id 'image' %}">Obraz</a></li>
+                        <li><a href="{% url 'module_content_create' module.id 'video' %}">Wideo</a></li>
+                        <li><a href="{% url 'module_content_create' module.id 'file' %}">Plik</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+{% endblock learning_view_content %}
