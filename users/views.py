@@ -15,8 +15,24 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     """A class to represent user creation view """
     template_name = 'registration/register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('users:login')
-    success_message = "Your account has been created successfully"
+    success_url = reverse_lazy('learning:dashboard')
+    success_message = "%(username)s, your account has been created successfully"
+
+    def login_after_register(self):
+        """
+        Logs in user after registration.
+        """
+        login(self.request, self.object)
+        
+    def form_valid(self, form):
+        """
+        Override form_valid method to use method login after register
+        """
+        valid = super(UserCreateView, self).form_valid(form)
+
+        self.login_after_register()
+
+        return valid
 
     
 class ProfileView(DetailView):
