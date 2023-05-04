@@ -25,7 +25,19 @@ class Subject(models.Model):
         return self.title
     
 
-class Course(models.Model):
+class TimeStampMixin(models.Model):
+    """
+    An abstract base class model that provides self-updating
+    created and updated fields.
+    """
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+    
+
+class Course(TimeStampMixin):
     """
     A class to represent courses.
 
@@ -58,7 +70,6 @@ class Course(models.Model):
     thumbnail = models.ImageField(
         upload_to='course_thumbnails/')
     overview = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10,
                             choices=STATUS_CHOICES,
                             default='Draft')
@@ -70,7 +81,7 @@ class Course(models.Model):
         return self.title
     
 
-class Module(models.Model):
+class Module(TimeStampMixin):
     """
     A class to represent module
 
@@ -95,7 +106,7 @@ class Module(models.Model):
         return '{}. {}'.format(self.order, self.title)
     
 
-class Content(models.Model):
+class Content(TimeStampMixin):
     """
     A class to represent content
 
@@ -126,7 +137,7 @@ class Content(models.Model):
         ordering = ['order']
 
 
-class ItemBase(models.Model):
+class ItemBase(TimeStampMixin):
     """
     Abstract class to represent different type items
 
@@ -141,8 +152,6 @@ class ItemBase(models.Model):
                               on_delete=models.CASCADE,
                               related_name='%(class)s_related')
     title = models.CharField(max_length=250)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     
     class Meta:
         abstract = True

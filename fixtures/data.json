@@ -663,6 +663,227 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.137Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "29",
+    "object_repr": "tom",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.144Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "28",
+    "object_repr": "johnn",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.156Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "27",
+    "object_repr": "john",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.160Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "26",
+    "object_repr": "elo",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.163Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "25",
+    "object_repr": "blaaa",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.166Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "24",
+    "object_repr": "blaa",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.169Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "23",
+    "object_repr": "bla",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.173Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "22",
+    "object_repr": "testyyyy",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.175Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "21",
+    "object_repr": "testyyy",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.178Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "19",
+    "object_repr": "testyy",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.181Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "18",
+    "object_repr": "testy",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2023-05-03T20:55:49.185Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "17",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2023-05-03T21:58:07.788Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "34",
+    "object_repr": "john",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2023-05-03T21:58:07.798Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "33",
+    "object_repr": "mati",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2023-05-03T21:58:07.802Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "32",
+    "object_repr": "mark",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2023-05-03T21:58:07.806Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "31",
+    "object_repr": "testy",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2023-05-03T21:58:07.810Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "30",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -1373,6 +1594,30 @@
 },
 {
   "model": "sessions.session",
+  "pk": "763mrkewnejgfvj8mxxxkj0vk0rgi5wl",
+  "fields": {
+    "session_data": "e30:1puJYL:PeKjM96SUb1b2VLZg14uyYiwjbO0FkeHVZC3j3WMmnY",
+    "expire_date": "2023-05-17T20:58:21.165Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "asz7za3vhv1uddild67e4uw3gtu7f15i",
+  "fields": {
+    "session_data": "e30:1puJ68:MGHbr1ujrobt7Nug3y7ApnPzxThBBlQsGARn37wnGao",
+    "expire_date": "2023-05-17T20:29:12.808Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dof661hp0o0q9c88o23146prjzgzw9zh",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnWyuvYlPScwdqPTQIokeKkirg7spQC2jcz7zCZ9m3MeytrntRcDZjL78YkrzJ3oE-aH4uVZd7WiW1X7EmbvS9a3rfT_TsYqY295lgRoBSXNDJCIo1OAJWCOBQfhkBSwUNQQYc8AFZXPDORV0_JfL74djiE:1puaTm:OKOU3089DUdys9dCZeqd6Wjoxj7rBaguYONeR0Vmmc0",
+    "expire_date": "2023-05-18T15:02:46.227Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "f8liedvsm89nshsvclsbuifprffixzkp",
   "fields": {
     "session_data": ".eJxVjDsOwjAQBe_iGlnZjX9Q0nMGa-21cQDZUpxUiLuTSCmgnZn33sLTuhS_9jT7icVFgDj9skDxmeou-EH13mRsdZmnIPdEHrbLW-P0uh7t30GhXrY1BZWjtZjYqbMlHhUbE9joMWs35kSYASMAb9wxDhF0xiFEBwqACMXnC_miOB0:1pgtbd:9oLYc7ZDRX0Nl6ykpG2QI8YrtF7LQitH7Iu0uszP2o4",
@@ -1393,6 +1638,14 @@
   "fields": {
     "session_data": "e30:1pguYT:dVScpq5pCDkXP5fV0s5Hj48hh9Ii5A3XhWXxk8CeA8Q",
     "expire_date": "2023-04-10T21:39:05.791Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nauqurlpjbt9lmxpvaydz8i2cbden35c",
+  "fields": {
+    "session_data": "e30:1puJXy:CD9L9NPppBDm82mv2DkLPxgTykKEeTCXzWVinI8Re7k",
+    "expire_date": "2023-05-17T20:57:58.679Z"
   }
 },
 {
@@ -1463,14 +1716,51 @@
   "model": "learning.course",
   "pk": 8,
   "fields": {
+    "created": "2023-04-27T17:48:50.009Z",
+    "updated": "2023-05-04T21:46:19.032Z",
     "owner": 2,
     "subject": 1,
     "title": "Python",
     "slug": "python",
     "thumbnail": "course_thumbnails/Screenshot_from_2022-11-18_21-28-27_TutOPuA.png",
     "overview": "bla bla bla bla",
-    "created": "2023-04-27T17:48:50.009Z",
     "status": "Draft"
+  }
+},
+{
+  "model": "learning.module",
+  "pk": 8,
+  "fields": {
+    "created": "2023-05-04T21:46:19.037Z",
+    "updated": "2023-05-04T21:46:19.041Z",
+    "course": 8,
+    "title": "mod 1",
+    "description": "bla bla bla",
+    "order": 0
+  }
+},
+{
+  "model": "learning.module",
+  "pk": 9,
+  "fields": {
+    "created": "2023-05-04T21:46:19.037Z",
+    "updated": "2023-05-04T21:46:19.041Z",
+    "course": 8,
+    "title": "mod 2",
+    "description": "",
+    "order": 1
+  }
+},
+{
+  "model": "learning.module",
+  "pk": 10,
+  "fields": {
+    "created": "2023-05-04T21:46:19.037Z",
+    "updated": "2023-05-04T21:46:19.041Z",
+    "course": 8,
+    "title": "mod 3",
+    "description": "",
+    "order": 2
   }
 },
 {
