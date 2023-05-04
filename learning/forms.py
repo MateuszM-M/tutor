@@ -21,6 +21,7 @@ class CreateUpdateCourseForm(forms.ModelForm):
 ModuleFormSet = inlineformset_factory(Course,
                                       Module,
                                       fields=['title', 
-                                              'description'],
+                                              'description',
+                                              'order'],
                                               extra=3,
                                               can_delete=True)
