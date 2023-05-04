@@ -234,7 +234,8 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
         """
         form = self.get_form(self.model, instance=self.obj)
         return self.render_to_response({'form': form,
-                                        'object': self.obj})
+                                        'object': self.obj,
+                                        'course': self.module.course})
 
     def post(self, request, module_id, model_name, id=None):
         """
