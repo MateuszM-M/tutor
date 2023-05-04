@@ -2,7 +2,7 @@ from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
 from django.forms.models import modelform_factory
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.views.generic import CreateView, TemplateView, UpdateView
@@ -74,7 +74,7 @@ class CourseCreateView(PermissionRequiredMixin,
     A class to represent create course view.
     """
     template_name = 'learning/teacher/create_course.html'
-    success_url = '/teacher/'
+    success_url = reverse_lazy('learning:teacher_dashboard')
     permission_required = 'learning.add_course'
 
     def form_valid(self, form):
@@ -92,7 +92,7 @@ class CourseDeleteView(PermissionRequiredMixin,
     """
     A class to represent delete couse view.
     """
-    success_url = '/teacher/'
+    success_url = reverse_lazy('learning:teacher_dashboard')
     template_name = 'learning/teacher/delete_course.html'
     permission_required = 'learning.delete_course'
 
@@ -104,7 +104,7 @@ class CourseUpdateView(PermissionRequiredMixin,
     A class to represent update couse view.
     """
     template_name = 'learning/teacher/update_course.html'
-    success_url = '/teacher/'
+    success_url = reverse_lazy('learning:teacher_dashboard')
     permission_required = 'learning.change_course'
 
 
