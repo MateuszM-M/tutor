@@ -7,36 +7,33 @@
     {% else %}
         Adding new content
     {% endif %}
-
 {% endblock %}
 
 {% block learning_view_content %}
-<div class="container d-flex justify-content-around my-auto">
-    <div class="card col-md-10">
-        <main>
-            <div>
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">
-                        {% if object %}
-                            Editing {{ object.title }}
-                        {% endif %}
-                            Adding new content
-                        {% endblock %}
-                    </h3>
+    <div class="container d-flex justify-content-around my-auto">
+        <div class="card col-md-10">
+            <main>
+                <div>
+                    <div class="card text-center">
+                        <h3 class="fw-normal card-text card-header">
+                            {% if object %}
+                                Editing {{ object.title }}
+                            {% else %}
+                                Adding new content
+                            {% endif %}
+                        </h3>
 
-                    <div class="module">
-                    <h2>Informacje o kursie</h2>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {{ form.as_p }}
-                        {% csrf_token %}
-                        <p><input type="submit" value="Zapisz treść"></p>
-                    </form>
+                        <div class="module">
+                        <h2>Informacje o kursie</h2>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {{ form.as_p }}
+                            {% csrf_token %}
+                            <p><input type="submit" value="Zapisz treść"></p>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
 
-
-
-{% endblock learning_view_content %}
+{% endblock %}
