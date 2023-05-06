@@ -5,7 +5,7 @@ from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from django.views.generic import CreateView, TemplateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView, ListView
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
@@ -14,7 +14,7 @@ from users.models import Profile
 
 from .filters import CourseFilter
 from .forms import CreateUpdateCourseForm, ModuleFormSet
-from .models import Content, Course, Module
+from .models import Content, Course, Module, Subject
 
 
 class OwnerMixin(object):
@@ -62,9 +62,14 @@ class TeacherDashboard(OwnerCourseMixin, FilterView):
     """
     A class to represent teacher dashboard view.
     """
-    template_name = 'learning/teacher/teacher_dashboard.html'
+    template_name = 'learning/course_list.html'
     paginate_by = 10
     filterset_class = CourseFilter
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TeacherDashboard, self).get_context_data(**kwargs)
+        context['courses'] = self.object_list
+        return context
         
 
 class CourseCreateView(PermissionRequiredMixin, 
@@ -284,3 +289,19 @@ class ModuleContentListView(TemplateResponseMixin, View):
                                    course__owner=request.user)
         return self.render_to_response({'module': module,
                                         'course': module.course})
+    
+
+class SubjectListView(TemplateResponseMixin, View):
+    model = Course
+    template_name = 'learning/course_list.html'
+
+    def get(self, request, slug=None,):
+
+        subject = get_object_or_404(Subject, 
+                                    slug=self.kwargs['slug'])
+        
+        courses = Course.objects.filter(subject=subject)
+
+        context = {'subject': subject, 'courses': courses}
+
+        return self.render_to_response(context)

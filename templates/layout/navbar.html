@@ -16,7 +16,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subject in subjects %}
-                    <a class="dropdown-item" href="#">{{subject.title}}</a>
+                    <a class="dropdown-item" href="{% url 'learning:subject_list_view' subject.slug %}">{{subject.title}}</a>
                     {% endfor %}
                 </div>
             </li>
