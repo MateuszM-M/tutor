@@ -8,12 +8,12 @@ from django.utils.text import slugify
 from django.views.generic import CreateView, TemplateView, UpdateView, ListView
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, FormView
 from django_filters.views import FilterView
 from users.models import Profile
 
 from .filters import CourseFilter
-from .forms import CreateUpdateCourseForm, ModuleFormSet
+from .forms import CreateUpdateCourseForm, ModuleFormSet, CourseEnrollForm
 from .models import Content, Course, Module, Subject
 
 
@@ -127,6 +127,9 @@ class CourseDetailView(OwnerCourseMixin, DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['profile'] = Profile.objects.filter(
             id=self.object.owner.profile.id)
+        context['enroll_form'] = CourseEnrollForm(
+            initial={'course': self.object}
+        )
         return context
 
 
@@ -305,3 +308,18 @@ class SubjectListView(TemplateResponseMixin, View):
         context = {'subject': subject, 'courses': courses}
 
         return self.render_to_response(context)
+    
+
+class StudentEnrollCourseView(LoginRequiredMixin, FormView):
+    course = None
+    form_class = CourseEnrollForm
+
+    def form_valid(self, form):
+        self.course = form.cleaned_data['course']
+        self.course.students.add(self.request.user)
+        return super(StudentEnrollCourseView,
+                     self).form_valid(form)
+        
+    def get_success_url(self):
+        return reverse_lazy('learning:detail_course',
+                            args=[self.course.slug])

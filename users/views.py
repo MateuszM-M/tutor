@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.detail import DetailView
@@ -109,4 +109,3 @@ class Custom500View(TemplateView):
     A class to handle 500 error
     """
     template_name = "errors/500.html"
-

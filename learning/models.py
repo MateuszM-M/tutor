@@ -50,8 +50,8 @@ class Course(TimeStampMixin):
     slug : slug of the course, made automatically
     thumbnail : image to represent the course
     overview : basic info about the course
-    created : when the course was created
     status : status of the course, to choose from the STATUS_CHOICES
+    students : many to many relaionship with user, students enolled
     """
 
     STATUS_CHOICES = (
@@ -73,6 +73,9 @@ class Course(TimeStampMixin):
     status = models.CharField(max_length=10,
                             choices=STATUS_CHOICES,
                             default='Draft')
+    students = models.ManyToManyField(get_user_model(),
+                                      related_name='courses_joined',
+                                      blank=True)
     
     class Meta:
         ordering = ('-created',)

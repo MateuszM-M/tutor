@@ -54,4 +54,8 @@ urlpatterns = [
      path('subject/<str:slug>',
           views.SubjectListView.as_view(),
           name='subject_list_view'),
+
+     path('enroll-course/',
+          views.StudentEnrollCourseView.as_view(),
+          name='student_enroll_course')
 ]

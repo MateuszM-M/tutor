@@ -18,6 +18,7 @@ class CreateUpdateCourseForm(forms.ModelForm):
             'status',
             ]
         
+        
 ModuleFormSet = inlineformset_factory(Course,
                                       Module,
                                       fields=['title', 
@@ -25,3 +26,8 @@ ModuleFormSet = inlineformset_factory(Course,
                                               'order'],
                                               extra=3,
                                               can_delete=True)
+
+
+class CourseEnrollForm(forms.Form):
+    course = forms.ModelChoiceField(queryset=Course.objects.all(),
+                                    widget=forms.HiddenInput)

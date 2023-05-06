@@ -4,9 +4,9 @@ from crispy_forms.layout import HTML, Field, Layout
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
-from .signals import teacher_created
 
 from .models import Profile
+from .signals import teacher_created
 
 
 class UserLoginForm(AuthenticationForm):
