@@ -57,5 +57,17 @@ urlpatterns = [
 
      path('enroll-course/',
           views.StudentEnrollCourseView.as_view(),
-          name='student_enroll_course')
+          name='student_enroll_course'),
+
+     path('learn/',
+          views.StudentDashboard.as_view(),
+          name='student_dashboard'),
+
+     path('learn/<str:slug>/',
+          views.StudentCourseDetailView.as_view(),
+          name='student_course_detail'),
+
+     path('learn/<str:slug>/<module_id>',
+          views.StudentCourseDetailView.as_view(),
+          name='student_course_detail_module'),
 ]

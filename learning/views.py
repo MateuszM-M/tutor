@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
@@ -323,3 +324,38 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
     def get_success_url(self):
         return reverse_lazy('learning:detail_course',
                             args=[self.course.slug])
+    
+
+class StudentDashboard(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'learning/course_list.html'
+
+    def get_queryset(self):
+        qs = super(StudentDashboard, self).get_queryset()
+        return qs.filter(students__in=[self.request.user])
+    
+    def get_context_data(self, **kwargs):
+        context = super(StudentDashboard, self).get_context_data(**kwargs)
+        context['courses'] = self.object_list
+        return context
+    
+
+class StudentCourseDetailView(DetailView):
+    model = Course
+    template_name = 'learning/student/course_detail.html'
+    
+    def get_queryset(self):
+        qs = super(StudentCourseDetailView, self).get_queryset()
+        return qs.filter(students__in=[self.request.user])
+    
+    def get_context_data(self, **kwargs):
+        context = super(StudentCourseDetailView,
+                        self).get_context_data(**kwargs)
+
+        course = self.get_object()
+        if 'module_id' in self.kwargs:
+            context['module'] = course.modules.get(
+                id=self.kwargs['module_id'])
+        else:
+            context['module'] = course.modules.all()[0]
+        return context
