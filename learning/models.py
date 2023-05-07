@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 
 from .fields import OrderField
 
@@ -161,6 +163,10 @@ class ItemBase(TimeStampMixin):
     
     def __str__(self):
         return self.title
+    
+    def render(self):
+        return render_to_string('learning/student/content/{}.html'.format(
+            self._meta.model_name), {'item':self})
     
 
 class Text(ItemBase):

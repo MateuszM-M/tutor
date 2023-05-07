@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "debug_toolbar",
     'django_filters',
+    'embed_video',
 
     # My apps:
     'learning.apps.LearningConfig',
