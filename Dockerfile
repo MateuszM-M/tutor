@@ -10,4 +10,3 @@ COPY . /code/
 EXPOSE 8000
 CMD gunicorn tutor.wsgi --log-file -
 WORKDIR /code/
-

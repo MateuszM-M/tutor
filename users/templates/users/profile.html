@@ -1,34 +1,19 @@
-{% extends "layout/main.html" %}
+{% extends "utils/main_card.html" %}
 
-{% block title %}tutor | {{ object.user }}{% endblock %}
+{% block title %}
+    {{title}}
+{% endblock %}
 
-{% block content %}
+{% block card_content %}
 
-<div class="container d-flex justify-content-around my-auto">
-    <div class="card col-md-4">        
-        <main class="form-signin">
-            <div>
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">{{object.user}}</h3>
-                </div>
-                <img src="{{ object.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" >
-                <p class="m-2">Location: {{ object.location }}</p>
-                <p class="m-2">Bio: {{ object.bio }}</p>
-
-            </div>
-            {% if object.user == request.user %}
-            <div class="text-center my-3">
-                <a href="{% url 'users:profile_edit' object.slug %}" class="btn btn-outline-primary">Edit profile</a>
-            </div>
-            {% endif %}
-        </main>
-
-    </div>
-
-</div>
-
-
-
-
+    <img src="{{ object.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" >
+    <p class="m-1">Location: {{ object.location }}</p>
+    <p class="m-1">Bio: {{ object.bio }}</p>
+    
+    {% if object.user == request.user %}
+        <div class="text-center my-2">
+            <a href="{% url 'users:profile_edit' object.slug %}" class="btn btn-outline-primary">Edit profile</a>
+        </div>
+    {% endif %}
 
 {% endblock %}

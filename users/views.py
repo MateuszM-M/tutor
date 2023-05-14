@@ -17,6 +17,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = RegisterForm
     success_url = reverse_lazy('learning:dashboard')
     success_message = "%(username)s, your account has been created successfully"
+    extra_context = {"title": "Register"}
 
     def login_after_register(self):
         """
@@ -41,6 +42,11 @@ class ProfileView(DetailView):
     """
     template_name = 'users/profile.html'
     model = Profile
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileView, self).get_context_data(*args, **kwargs)
+        context['title'] = self.object.user.username
+        return context
 
 
 class ProfileUpdateView(SuccessMessageMixin, UpdateView):
@@ -50,7 +56,7 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = Profile
     template_name = 'users/edit_profile.html'
     form_class = ProfileUpdateForm
-    success_message = "Your profile has been updated successfully"
+    success_message = "%(username)s, your profile has been updated successfully"
     
     def get_success_url(self):
         """
@@ -58,6 +64,11 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
         """
         profile_id = self.kwargs['pk']
         return reverse_lazy('users:profile', kwargs={'pk': profile_id})
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileUpdateView, self).get_context_data(*args, **kwargs)
+        context['title'] = f"Update {self.object.user.username}"
+        return context
     
 
 class DefaultLogIn(RedirectView, SuccessMessageMixin):
