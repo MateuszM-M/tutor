@@ -1,0 +1,15 @@
+{% extends 'utils/main_card.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block card_content %}
+
+    <div class="form-floating my-2">
+        {% crispy form %}
+        {% csrf_token %}
+        <input class="w-100 btn btn-primary mt-3" type="submit" value="{{submit_value}}">
+
+{% endblock %}

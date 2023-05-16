@@ -80,7 +80,7 @@ class CourseCreateView(PermissionRequiredMixin,
     """
     A class to represent create course view.
     """
-    template_name = 'learning/teacher/create_course.html'
+    template_name = 'learning/teacher/create_update_course.html'
     success_url = reverse_lazy('learning:teacher_dashboard')
     permission_required = 'learning.add_course'
 
@@ -91,6 +91,11 @@ class CourseCreateView(PermissionRequiredMixin,
         """
         form.instance.slug = slugify(form.instance.title)
         return super(CourseCreateView, self).form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(CourseCreateView, self).get_context_data(**kwargs)
+        context.update({'submit_value': 'Create', 'title': 'Create Course'})
+        return context
     
 
 class CourseDeleteView(PermissionRequiredMixin,
@@ -103,6 +108,11 @@ class CourseDeleteView(PermissionRequiredMixin,
     template_name = 'learning/teacher/delete_course.html'
     permission_required = 'learning.delete_course'
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseDeleteView, self).get_context_data(**kwargs)
+        context.update({'title': 'Delete'})
+        return context
+
 
 class CourseUpdateView(PermissionRequiredMixin,
                        OwnerCourseEditMixin,
@@ -110,9 +120,14 @@ class CourseUpdateView(PermissionRequiredMixin,
     """
     A class to represent update couse view.
     """
-    template_name = 'learning/teacher/update_course.html'
+    template_name = 'learning/teacher/create_update_course.html'
     success_url = reverse_lazy('learning:teacher_dashboard')
     permission_required = 'learning.change_course'
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseUpdateView, self).get_context_data(**kwargs)
+        context.update({'submit_value': 'Update', 'title': 'Update Course'})
+        return context
 
 
 class CourseDetailView(OwnerCourseMixin, DetailView):
