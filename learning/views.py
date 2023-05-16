@@ -66,12 +66,13 @@ class TeacherDashboard(OwnerCourseMixin, FilterView):
     template_name = 'learning/course_list.html'
     paginate_by = 10
     filterset_class = CourseFilter
+    extra_context = {'title': 'Your courses'}
 
     def get_context_data(self, *args, **kwargs):
         context = super(TeacherDashboard, self).get_context_data(**kwargs)
-        context['courses'] = self.object_list
+        context.update({'courses': self.object_list, 'author': self.request.user})
         return context
-        
+    
 
 class CourseCreateView(PermissionRequiredMixin, 
                        OwnerCourseEditMixin,
@@ -294,18 +295,19 @@ class ModuleContentListView(TemplateResponseMixin, View):
                                         'course': module.course})
     
 
-class SubjectListView(TemplateResponseMixin, View):
+class SubjectListView(ListView):
     model = Course
     template_name = 'learning/course_list.html'
 
     def get(self, request, slug=None,):
-
+        super(SubjectListView, self).get(request)
         subject = get_object_or_404(Subject, 
                                     slug=self.kwargs['slug'])
-        
         courses = Course.objects.filter(subject=subject)
 
-        context = {'subject': subject, 'courses': courses}
+        context = self.get_context_data()
+        context.update({'subject': subject, 'courses': courses,
+                   'title': subject.title})
 
         return self.render_to_response(context)
     
@@ -335,7 +337,7 @@ class StudentDashboard(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super(StudentDashboard, self).get_context_data(**kwargs)
-        context['courses'] = self.object_list
+        context.update({'courses': self.object_list, 'title': "Courses"})
         return context
     
 

@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block card_content %}
-
     <form action="{% url 'users:register' %}" method="POST">
         <div class="form-floating my-2">
             {% crispy form %}
@@ -18,5 +17,4 @@
     <div class="mb-3 text-center">
         <a class="" href="{% url 'users:login' %}">Go back to login</a>
     </div>
-
 {% endblock %}            
