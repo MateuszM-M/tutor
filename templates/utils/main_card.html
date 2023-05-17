@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container d-flex justify-content-around my-auto">
-        <div class="card col-lg-{% if view.template_name == 'learning/course_list.html' %}8{% else %}4{%endif%}">
+        <div class="card col-lg-{% if card_width %}{{ card_width }}{% else %}4{% endif %}">
             <main>
 
                 <div class="card text-center">

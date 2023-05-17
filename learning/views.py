@@ -70,7 +70,8 @@ class TeacherDashboard(OwnerCourseMixin, FilterView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(TeacherDashboard, self).get_context_data(**kwargs)
-        context.update({'courses': self.object_list, 'author': self.request.user})
+        context.update({'courses': self.object_list, 'author': self.request.user,
+                        'card_width': 8})
         return context
     
 
@@ -322,7 +323,7 @@ class SubjectListView(ListView):
 
         context = self.get_context_data()
         context.update({'subject': subject, 'courses': courses,
-                   'title': subject.title})
+                   'title': subject.title, 'card_width': 8})
 
         return self.render_to_response(context)
     
@@ -352,7 +353,8 @@ class StudentDashboard(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super(StudentDashboard, self).get_context_data(**kwargs)
-        context.update({'courses': self.object_list, 'title': "Courses"})
+        context.update({'courses': self.object_list, 'title': "Courses",
+                        "card_width": 8})
         return context
     
 
