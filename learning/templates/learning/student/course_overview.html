@@ -1,62 +1,30 @@
-{% extends 'layout/main.html' %}
+{% extends 'utils/main_card.html' %}
 
 {% block title %}
     {{ object.title }}
 {% endblock %}
 
-{% block content %}
+{% block card_content %}
 
+    <img src="{{ object.thumbnail.url }}" class="mx-auto d-block" alt="" id="profile_picture"  width=250 height=150>
+    <p class="m-2">Title: {{ object.title }}</p>
+    <p class="m-2">Overview: {{ object.overview }}</p>
+        <div class="text-center">
+        <a href="{% url 'learning:learning_view' object.slug %}" class="btn btn-outline-primary">Edit modules</a>
 
-<div class="container d-flex justify-content-around my-auto">
-
-    <div class="card col-md-6">        
-        <main class="form-signin">
-            <div>
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">Course:</h3>
-                </div>
-                <img src="{{ object.thumbnail.url }}" class="mx-auto d-block" alt="" id="profile_picture"  width=250 height=150>
-                <p class="m-2">Title: {{ object.title }}</p>
-                <p class="m-2">Overview: {{ object.overview }}</p>
-                <div class="text-center">
-                <a href="{% url 'learning:learning_view' object.slug %}" class="btn btn-outline-primary">Learn</a>
-
-                {% if request.user.is_authenticated %}
-                    <form action="{% url 'learning:student_enroll_course' %}" method="post">
-                        {{ enroll_form }}
-                        {% csrf_token %}
-                        <input type="submit" class="button" value="Enroll now">
-                    </form>
-                {% else %}
-                    <a href="{% url 'learning:student_registration' %}" class="button">
-                        Register to buy this course.
-                    </a>
-                {% endif %}
-
-                </div>
-            </div>
-        </main>
-
-    </div>
-
-
-    <div class="card col-md-4">        
-        <main class="form-signin">
-            <div>
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">Course author:</h3>
-                </div>
-                <img src="{{ object.owner.profile.profile_picture.url }}" class="mx-auto d-block" alt="" id="profile_picture" >
-                <p class="m-2">User: {{ object.owner }}</p>
-                <p class="m-2">Location: {{ profile.location }}</p>
-                <p class="m-2">Bio: {{ profile.bio }}</p>
-
-            </div>
-        </main>
-
-    </div>
-
-</div>
-
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'learning:student_enroll_course' %}" method="post">
+                {{ enroll_form }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-outline-primary" value="Enroll now">
+            </form>
+        {% else %}
+            <a href="{% url 'learning:student_registration' %}" class="button">
+                Register to buy this course.
+            </a>
+        {% endif %}
+        <p>Author:</p>
+        <a href="{% url 'users:profile' object.owner.profile.slug %}">{{object.owner.username}}</a>
 
 {% endblock %}
+

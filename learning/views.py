@@ -143,11 +143,12 @@ class CourseDetailView(OwnerCourseMixin, DetailView):
         Adds profile to context to make it accessible from templates.
         """
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context['profile'] = Profile.objects.filter(
-            id=self.object.owner.profile.id)
-        context['enroll_form'] = CourseEnrollForm(
-            initial={'course': self.object}
-        )
+        context.update({'enroll_form': CourseEnrollForm(
+            initial={'course': self.object}),
+            'title': self.object.title,
+            'card_width': 8
+            })
+
         return context
 
 
