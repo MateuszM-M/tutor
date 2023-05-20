@@ -2,24 +2,56 @@
 
 
 {% block content %}
-    <div class="container d-flex justify-content-around my-auto">
-        <div class="card col-lg-{% if card_width %}{{ card_width }}{% else %}4{% endif %}">
-            <main>
 
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">
-                        {{title}}
-                    </h3>
+{% if course %}
+    <div class="container-fluid">   
+        <div class="row flex-nowrap"> 
+            <div class="col-auto px-0">
+                <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                    <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+
+                        {% if course.owner == request.user %}
+                            <a href="{% url 'learning:course_module_update' course.id %}" class="btn btn-outline-primary m-1">Manage modules</a>
+                        {% endif %}
+
+                        {% for module in course.modules.all %}
+                            <a href="{% url 'learning:module_content_list' module.id %}" class="list-group-item border-end-0 d-inline-block text-truncate">{{ module.title }}</a>
+                        {% empty %}
+                            <p class="m-1">No modules</p>
+                        {% endfor %}
+
+                    </div>
                 </div>
+            </div>
+            <div class="col ps-md-2 pt-2">
+                <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Course Menu</a>
+{% endif %}
 
-                <div class="p-5">
-                    {% block card_content %}
+                    <div class="container d-flex justify-content-around my-auto">
+                        <div class="card col-lg-{% if card_width %}{{ card_width }}{% else %}4{% endif %}">
+                            <main>
 
-                    {% endblock card_content %}
-                </div>
+                                <div class="card text-center">
+                                    <h3 class="fw-normal card-text card-header">
+                                        {{title}}
+                                    </h3>
+                                </div>
 
-            </main>
-        </div>  
+                                <div class="p-5">
+                                    {% block card_content %}
+
+                                    {% endblock card_content %}
+                                </div>
+
+                            </main>
+                        </div>  
+                    </div>
+
+    {% if course %}
+            </div>
+        </div>
     </div>
+{% endif %}
+
 {% endblock %} 
 

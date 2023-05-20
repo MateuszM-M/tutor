@@ -1,49 +1,45 @@
-{% extends 'learning/student/learning_view.html' %}
+{% extends 'utils/main_card.html' %}
 {% load course %}
 
-
 {% block title %}
-    Module {{ module.order|add:1 }}: {{ module.title }}
+    {{ title }}
 {% endblock %}
 
-{% block learning_view_content %}
-<div class="container d-flex justify-content-around my-auto">
-    <div class="card col-md-10">
-        <main>
-            <div>
-                <div class="card text-center">
-                    <h3 class="fw-normal card-text card-header">
-                        Module: {{ module.order|add:1 }}: {{ module.title }}
-                    </h3>
+{% block card_content %}
 
-                    <div class="module-contents">
-                        {% for content in module.contents.all %}
-                        <div data-id="{{ content.id }}">
-                            {% with item=content.item %}
-                            <p>{{ item }} ({{ item|model_name }})</p>
-                            <a href="{% url 'learning:module_content_update' module.id item|model_name item.id %}">Edit</a>
-                            <form action="{% url 'learning:module_content_delete' content.id %}" method="post">
-                                <input type="submit" value="Delete">
-                                {% csrf_token %}
-                            </form>
-                            {% endwith %}
-                        </div>
-                        {% empty %}
-                        <p>No content added, yet.</p>
-                        {% endfor %}
-                    </div>
-                    <h3>Add new content</h3>
-                    <ul class="content-types">
-                        <li><a href="{% url 'learning:module_content_create' module.id 'text' %}">Text</a></li>
-                        <li><a href="{% url 'learning:module_content_create' module.id 'image' %}">Image</a></li>
-                        <li><a href="{% url 'learning:module_content_create' module.id 'video' %}">Video</a></li>
-                        <li><a href="{% url 'learning:module_content_create' module.id 'file' %}">File</a></li>
-                    </ul>
-                </div>
-            </div>
-        </main>
+    <div class="card border text-center p-1 my-1">
+    <h4>Add new content</h4>
+        <ul class="content-types">
+            <li><a href="{% url 'learning:module_content_create' module.id 'text' %}">Text</a></li>
+            <li><a href="{% url 'learning:module_content_create' module.id 'image' %}">Image</a></li>
+            <li><a href="{% url 'learning:module_content_create' module.id 'video' %}">Video</a></li>
+            <li><a href="{% url 'learning:module_content_create' module.id 'file' %}">File</a></li>
+        </ul>
     </div>
-</div>
+   
+   <h4 class="text-center mt-4">Added contents to module:</h4>
+
+    <div class="module-contents">
+
+        {% for content in module.contents.all %}
+        <div data-id="{{ content.id }}" class="card border text-center p-1 my-1">
+            {% with item=content.item %}
+
+            <p>{{ item }} ({{ item|model_name }})</p>
+            <a href="{% url 'learning:module_content_update' module.id item|model_name item.id %}">Edit</a>
+
+            <form action="{% url 'learning:module_content_delete' content.id %}" method="post">
+                <input type="submit" value="Delete">
+                {% csrf_token %}
+            </form>
+
+            {% endwith %}
+        </div>
+        {% empty %}
+            <p>No content added, yet.</p>
+        {% endfor %}
+
+    </div>
 
 
-{% endblock learning_view_content %}
+{% endblock %}

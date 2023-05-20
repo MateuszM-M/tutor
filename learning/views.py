@@ -1,4 +1,3 @@
-from typing import Any, Dict
 from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
@@ -6,7 +5,7 @@ from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from django.views.generic import CreateView, TemplateView, UpdateView, ListView
+from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
@@ -14,7 +13,7 @@ from django_filters.views import FilterView
 from users.models import Profile
 
 from .filters import CourseFilter
-from .forms import CreateUpdateCourseForm, ModuleFormSet, CourseEnrollForm
+from .forms import CourseEnrollForm, CreateUpdateCourseForm, ModuleFormSet
 from .models import Content, Course, Module, Subject
 
 
@@ -149,23 +148,6 @@ class CourseDetailView(OwnerCourseMixin, DetailView):
             'card_width': 8
             })
 
-        return context
-
-
-class LearningView(DetailView, LoginRequiredMixin):
-    """
-    A class to represent learning view for user that bought course.
-    """
-    model = Course
-    template_name = 'learning/student/learning_view.html'
-
-    def get_context_data(self, *args, **kwargs):
-        """
-        Adds self.object as course to the context so it can be retrieved
-        in other templates such as CourseModelUpdateView.
-        """
-        context = super(LearningView, self).get_context_data(*args, **kwargs)
-        context['course'] = self.object
         return context
 
 
@@ -308,8 +290,11 @@ class ModuleContentListView(TemplateResponseMixin, View):
         module = get_object_or_404(Module,
                                    id=module_id,
                                    course__owner=request.user)
-        return self.render_to_response({'module': module,
-                                        'course': module.course})
+        context = {'module': module,
+                   'course': module.course,
+                   "title": module.title,
+                   "course": module.course}
+        return self.render_to_response(context)
     
 
 class SubjectListView(ListView):
