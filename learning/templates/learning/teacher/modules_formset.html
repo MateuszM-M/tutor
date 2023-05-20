@@ -1,28 +1,16 @@
-{% extends 'learning/student/learning_view.html' %}
+{% extends 'utils/main_card.html' %}
 
 {% block title %} 
     {{ course.title }} 
 {% endblock %}
 
-{% block learning_view_content %}
-<div class="container d-flex justify-content-around my-auto">
-    <div class="card col-md-10">
-        <main>
-            <div>
-                <div class="card text-center">
+{% block card_content %}
 
-                    <h3 class="fw-normal card-text card-header">{{ course.title }}</h3>
-                    
                     <form action="" method="post">
                         {{ formset.as_p }}
                         {{ formset.managemet_form }}
                         {% csrf_token %}
                         <input type="submit" class="btn btn-outline-primary m-3" value="save">
                     </form>
-                </div>
-            </div>
-        </main>
-    </div>
-</div>
 
-{% endblock learning_view_content %}
+{% endblock card_content %}

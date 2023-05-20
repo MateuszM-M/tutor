@@ -177,9 +177,12 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
         """
         Renders course and formset on get request.
         """
+        course = self.course
         formset = self.get_formset()
-        return self.render_to_response({'course': self.course,
-                                        'formset': formset})
+        return self.render_to_response({'course': course,
+                                        'formset': formset,
+                                        'title': course.title,
+                                        "card_width": 6})
         
     def post(self, request, *args, **kwargs):
         """
