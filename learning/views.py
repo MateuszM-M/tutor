@@ -244,10 +244,17 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
         """
         Handels get method.
         """
+        obj = self.obj
+        if obj:
+            title = f"Editing {obj.title}"
+        else:
+            title = "Adding new content"
         form = self.get_form(self.model, instance=self.obj)
         return self.render_to_response({'form': form,
-                                        'object': self.obj,
-                                        'course': self.module.course})
+                                        'object': obj,
+                                        'title': title,
+                                        'course': self.module.course,
+                                        'card_width': 6})
 
     def post(self, request, module_id, model_name, id=None):
         """
