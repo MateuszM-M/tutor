@@ -363,6 +363,7 @@ class StudentCourseDetailView(DetailView):
         return qs.filter(students__in=[self.request.user])
     
     def get_context_data(self, **kwargs):
+
         context = super(StudentCourseDetailView,
                         self).get_context_data(**kwargs)
 
@@ -372,4 +373,8 @@ class StudentCourseDetailView(DetailView):
                 id=self.kwargs['module_id'])
         else:
             context['module'] = course.modules.all()[0]
+
+        module = context['module']
+        context.update({'title': module.title,
+                        'card_width': 8})
         return context
