@@ -11,7 +11,8 @@ urlpatterns = [
         auth_views.LoginView.as_view(
         redirect_authenticated_user=True,
         template_name='registration/login.html',
-        authentication_form=UserLoginForm),
+        authentication_form=UserLoginForm,
+        extra_context={'title': 'Log in'}),
         name='login'),
 
     path('logout/', 
