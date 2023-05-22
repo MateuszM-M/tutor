@@ -42,6 +42,7 @@
 
         <ul class="navbar-nav ml-auto mx-4">
             {% if request.user.is_authenticated %}
+            {% comment "Future features" %} 
             <li class="nav-item">
                 <a class="nav-link" href="#">Messages</a>
             </li>
@@ -51,6 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Cart</a>
             </li>
+             {% endcomment %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users:profile' request.user.profile.slug %}">{{ request.user }}</a>
             </li>
