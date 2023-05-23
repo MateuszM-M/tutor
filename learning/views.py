@@ -51,6 +51,17 @@ class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
     success_url = reverse_lazy('learning:teacher_dashboard')
 
 
+class CourseListView(FilterView):
+    """
+    A class to inherit from for all views that use
+    course_list template
+    """
+    model = Course
+    template_name = 'learning/course_list.html'
+    filterset_class = CourseFilter
+    paginate_by = 10
+
+
 class Dashboard(LoginRequiredMixin, TemplateView):
     """
     A class to represent main dashboard view.
@@ -58,19 +69,17 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     template_name = 'learning/dashboard.html'
 
 
-class TeacherDashboard(OwnerCourseMixin, FilterView):
+class TeacherDashboard(OwnerMixin, 
+                       CourseListView, 
+                       LoginRequiredMixin):
     """
     A class to represent teacher dashboard view.
     """
-    template_name = 'learning/course_list.html'
-    paginate_by = 10
-    filterset_class = CourseFilter
-    extra_context = {'title': 'Your courses'}
 
     def get_context_data(self, *args, **kwargs):
         context = super(TeacherDashboard, self).get_context_data(**kwargs)
         context.update({'courses': self.object_list, 'author': self.request.user,
-                        'card_width': 8})
+                        'card_width': 8, 'title': 'Your Courses'})
         return context
     
 
@@ -307,21 +316,22 @@ class ModuleContentListView(TemplateResponseMixin, View):
         return self.render_to_response(context)
     
 
-class SubjectListView(ListView):
-    model = Course
-    template_name = 'learning/course_list.html'
+class SubjectListView(CourseListView):
 
-    def get(self, request, slug=None,):
-        super(SubjectListView, self).get(request)
+    def get_queryset(self, slug=None, **kwargs):
+        qs = super(SubjectListView, self).get_queryset()
         subject = get_object_or_404(Subject, 
                                     slug=self.kwargs['slug'])
-        courses = Course.objects.filter(subject=subject)
+        return qs.filter(subject=subject)
+    
+    def get_context_data(self, **kwargs):
+        context = super(SubjectListView, self).get_context_data(**kwargs)
+        context.update({'courses': self.object_list,
+                        'title': self.object_list[0].subject,
+                        'card_width': 8})
+        return context
 
-        context = self.get_context_data()
-        context.update({'subject': subject, 'courses': courses,
-                   'title': subject.title, 'card_width': 8})
-
-        return self.render_to_response(context)
+        
     
 
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
@@ -339,9 +349,7 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
                             args=[self.course.slug])
     
 
-class StudentDashboard(LoginRequiredMixin, ListView):
-    model = Course
-    template_name = 'learning/course_list.html'
+class StudentDashboard(LoginRequiredMixin, CourseListView):
 
     def get_queryset(self):
         qs = super(StudentDashboard, self).get_queryset()
