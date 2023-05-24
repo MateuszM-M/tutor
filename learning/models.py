@@ -53,7 +53,7 @@ class Course(TimeStampMixin):
     thumbnail : image to represent the course
     overview : basic info about the course
     status : status of the course, to choose from the STATUS_CHOICES
-    students : many to many relaionship with user, students enolled
+    students : many to many relaionship with user, field states students enolled
     """
 
     STATUS_CHOICES = (

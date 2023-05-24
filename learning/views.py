@@ -5,12 +5,11 @@ from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from django.views.generic import CreateView, ListView, TemplateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
 from django_filters.views import FilterView
-from users.models import Profile
 
 from .filters import CourseFilter
 from .forms import CourseEnrollForm, CreateUpdateCourseForm, ModuleFormSet
@@ -95,13 +94,16 @@ class CourseCreateView(PermissionRequiredMixin,
 
     def form_valid(self, form):
         """
-        Overides the form validation to addtionally assign
+        Overides form_valid to addtionally assign
         slug from slugyfying the course title
         """
         form.instance.slug = slugify(form.instance.title)
         return super(CourseCreateView, self).form_valid(form)
     
     def get_context_data(self, **kwargs):
+        """
+        Overrides function to add additional context data
+        """
         context = super(CourseCreateView, self).get_context_data(**kwargs)
         context.update({'submit_value': 'Create', 'title': 'Create Course'})
         return context
@@ -116,11 +118,7 @@ class CourseDeleteView(PermissionRequiredMixin,
     success_url = reverse_lazy('learning:teacher_dashboard')
     template_name = 'learning/teacher/delete_course.html'
     permission_required = 'learning.delete_course'
-
-    def get_context_data(self, **kwargs):
-        context = super(CourseDeleteView, self).get_context_data(**kwargs)
-        context.update({'title': 'Delete'})
-        return context
+    extra_context = {'title': 'Delete'}
 
 
 class CourseUpdateView(PermissionRequiredMixin,
@@ -132,11 +130,7 @@ class CourseUpdateView(PermissionRequiredMixin,
     template_name = 'learning/teacher/create_update_course.html'
     success_url = reverse_lazy('learning:teacher_dashboard')
     permission_required = 'learning.change_course'
-
-    def get_context_data(self, **kwargs):
-        context = super(CourseUpdateView, self).get_context_data(**kwargs)
-        context.update({'submit_value': 'Update', 'title': 'Update Course'})
-        return context
+    extra_context = {'submit_value': 'Update', 'title': 'Update Course'}
 
 
 class CourseDetailView(OwnerCourseMixin, DetailView):
@@ -169,7 +163,7 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
 
     def get_formset(self, data=None):
         """
-        Creates module formset
+        Gets module formset
         """
         return ModuleFormSet(instance=self.course, data=data)
 
@@ -317,45 +311,71 @@ class ModuleContentListView(TemplateResponseMixin, View):
     
 
 class SubjectListView(CourseListView):
+    """
+    A class to represent course list filtered by subject 
+    """
 
     def get_queryset(self, slug=None, **kwargs):
+        """
+        Returns queryset of courses filtered by subject
+        """
         qs = super(SubjectListView, self).get_queryset()
         subject = get_object_or_404(Subject, 
                                     slug=self.kwargs['slug'])
         return qs.filter(subject=subject)
     
     def get_context_data(self, **kwargs):
+        """
+        Updates context
+        """
         context = super(SubjectListView, self).get_context_data(**kwargs)
-        context.update({'courses': self.object_list,
-                        'title': self.object_list[0].subject,
+        obj_list = self.get_object_list
+        context.update({'courses': obj_list,
+                        'title': obj_list[0].subject,
                         'card_width': 8})
         return context
 
-        
-    
 
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
+    """
+    A class to represent course enrollment  
+    """
     course = None
     form_class = CourseEnrollForm
 
     def form_valid(self, form):
+        """
+        Overrider form_valid to add request user to enrolled students
+        """
         self.course = form.cleaned_data['course']
         self.course.students.add(self.request.user)
         return super(StudentEnrollCourseView,
                      self).form_valid(form)
         
     def get_success_url(self):
+        """
+        Redirects user to course detail after successful enrollment.
+        """
         return reverse_lazy('learning:detail_course',
                             args=[self.course.slug])
     
 
 class StudentDashboard(LoginRequiredMixin, CourseListView):
+    """
+    A class to reprsent course list student enrolled to.
+    """
 
     def get_queryset(self):
+        """
+        Returns queryset of courses student enrolled to.
+        """
         qs = super(StudentDashboard, self).get_queryset()
         return qs.filter(students__in=[self.request.user])
     
     def get_context_data(self, **kwargs):
+        """
+        Updates context.
+        """
         context = super(StudentDashboard, self).get_context_data(**kwargs)
         context.update({'courses': self.object_list, 'title': "Courses",
                         "card_width": 8})
@@ -363,14 +383,26 @@ class StudentDashboard(LoginRequiredMixin, CourseListView):
     
 
 class StudentCourseDetailView(DetailView):
+    """
+    A class to display contents of module
+    """
     model = Course
     template_name = 'learning/student/course_detail.html'
     
     def get_queryset(self):
+        """
+        Checks if request user is enrolled to the course.
+        """
         qs = super(StudentCourseDetailView, self).get_queryset()
         return qs.filter(students__in=[self.request.user])
     
     def get_context_data(self, **kwargs):
+        """
+        Updates context
+
+        if module_id is provided, adds it to context,
+        otherwise adds id of first course module
+        """
 
         context = super(StudentCourseDetailView,
                         self).get_context_data(**kwargs)
