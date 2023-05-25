@@ -14,6 +14,7 @@ from django_filters.views import FilterView
 from .filters import CourseFilter
 from .forms import CourseEnrollForm, CreateUpdateCourseForm, ModuleFormSet
 from .models import Content, Course, Module, Subject
+from .permissions import TeacherRequiredMixin
 
 
 class OwnerMixin(object):
@@ -68,9 +69,9 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     template_name = 'learning/dashboard.html'
 
 
-class TeacherDashboard(OwnerMixin, 
-                       CourseListView, 
-                       LoginRequiredMixin):
+class TeacherDashboard(TeacherRequiredMixin,
+                       OwnerMixin,
+                       CourseListView):
     """
     A class to represent teacher dashboard view.
     """
@@ -329,7 +330,7 @@ class SubjectListView(CourseListView):
         Updates context
         """
         context = super(SubjectListView, self).get_context_data(**kwargs)
-        obj_list = self.get_object_list
+        obj_list = self.object_list
         context.update({'courses': obj_list,
                         'title': obj_list[0].subject,
                         'card_width': 8})
