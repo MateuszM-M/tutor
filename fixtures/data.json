@@ -1,5 +1,226 @@
 [
 {
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-05-26T07:05:37.929Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "18",
+    "object_repr": "x",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-05-26T07:05:37.938Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "17",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-05-26T07:06:19.617Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "Students",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-05-26T07:13:03.114Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "mateusz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-05-26T07:13:08.541Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "2",
+    "object_repr": "user01",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-05-26T07:13:14.377Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "3",
+    "object_repr": "user02",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-05-26T07:13:19.514Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "4",
+    "object_repr": "user03",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-05-26T07:13:25.596Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "5",
+    "object_repr": "user04",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2023-05-26T07:13:30.029Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "6",
+    "object_repr": "user05",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2023-05-26T07:13:35.213Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "7",
+    "object_repr": "student01",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2023-05-26T07:13:40.190Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "8",
+    "object_repr": "student02",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2023-05-26T07:13:45.207Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "9",
+    "object_repr": "student03",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2023-05-26T07:13:51.304Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "10",
+    "object_repr": "student04",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2023-05-26T07:13:56.025Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "11",
+    "object_repr": "student05",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2023-05-26T07:14:00.495Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "12",
+    "object_repr": "teacher01",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2023-05-26T07:30:33.092Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "11",
+    "object_repr": "Economics",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Students\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2023-05-26T07:30:44.983Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "10",
+    "object_repr": "Django",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Students\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -540,19 +761,395 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add course",
+    "content_type": 7,
+    "codename": "add_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change course",
+    "content_type": 7,
+    "codename": "change_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete course",
+    "content_type": 7,
+    "codename": "delete_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view course",
+    "content_type": 7,
+    "codename": "view_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add subject",
+    "content_type": 6,
+    "codename": "add_subject"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change subject",
+    "content_type": 6,
+    "codename": "change_subject"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete subject",
+    "content_type": 6,
+    "codename": "delete_subject"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view subject",
+    "content_type": 6,
+    "codename": "view_subject"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add text",
+    "content_type": 10,
+    "codename": "add_text"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change text",
+    "content_type": 10,
+    "codename": "change_text"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete text",
+    "content_type": 10,
+    "codename": "delete_text"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view text",
+    "content_type": 10,
+    "codename": "view_text"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add module",
+    "content_type": 8,
+    "codename": "add_module"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change module",
+    "content_type": 8,
+    "codename": "change_module"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete module",
+    "content_type": 8,
+    "codename": "delete_module"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view module",
+    "content_type": 8,
+    "codename": "view_module"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add video",
+    "content_type": 12,
+    "codename": "add_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change video",
+    "content_type": 12,
+    "codename": "change_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete video",
+    "content_type": 12,
+    "codename": "delete_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view video",
+    "content_type": 12,
+    "codename": "view_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add image",
+    "content_type": 11,
+    "codename": "add_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change image",
+    "content_type": 11,
+    "codename": "change_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete image",
+    "content_type": 11,
+    "codename": "delete_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view image",
+    "content_type": 11,
+    "codename": "view_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add file",
+    "content_type": 13,
+    "codename": "add_file"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change file",
+    "content_type": 13,
+    "codename": "change_file"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete file",
+    "content_type": 13,
+    "codename": "delete_file"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view file",
+    "content_type": 13,
+    "codename": "view_file"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add content",
+    "content_type": 9,
+    "codename": "add_content"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change content",
+    "content_type": 9,
+    "codename": "change_content"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete content",
+    "content_type": 9,
+    "codename": "delete_content"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view content",
+    "content_type": 9,
+    "codename": "view_content"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 14,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 14,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 14,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 14,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add profile",
+    "content_type": 15,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change profile",
+    "content_type": 15,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete profile",
+    "content_type": 15,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view profile",
+    "content_type": 15,
+    "codename": "view_profile"
+  }
+},
+{
   "model": "auth.group",
   "pk": 1,
   "fields": {
     "name": "Teachers",
     "permissions": [
-      45,
-      46,
-      47,
-      48,
+      33,
+      34,
+      35,
+      36,
+      49,
+      50,
+      51,
+      52,
+      41,
+      42,
+      43,
+      44,
       29,
       30,
       31,
       32,
+      37,
+      38,
+      39,
+      40,
+      45,
+      46,
+      47,
+      48,
       57,
       58,
       59,
@@ -560,24 +1157,144 @@
       53,
       54,
       55,
-      56,
-      37,
-      38,
-      39,
-      40,
-      33,
-      34,
-      35,
-      36,
-      41,
-      42,
-      43,
-      44,
-      49,
-      50,
-      51,
-      52
+      56
     ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "Students",
+    "permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "learning",
+    "model": "subject"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "learning",
+    "model": "course"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "learning",
+    "model": "module"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "learning",
+    "model": "content"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "learning",
+    "model": "text"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "learning",
+    "model": "image"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "learning",
+    "model": "video"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "learning",
+    "model": "file"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "users",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "users",
+    "model": "profile"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xowl1rqefx5qdkkrpe1aaepwqsdvp3ws",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnZjX9Q0nMGa-21cQDZUpxUiLuTSCmgnZn33sLTuhS_9jT7icVFgDj9skDxmeou-EH13mRsdZmnIPdEHrbLW-P0uh7t30GhXrY1BZWjtZjYqbMlHhUbE9joMWs35kSYASMAb9wxDhF0xiFEBwqACMXnC_miOB0:1q2Ru4:FTwBJ1_umfGVpJ6qL5CI6XNttMfJiIizwfS_hCSAs9c",
+    "expire_date": "2023-06-09T07:30:24.273Z"
   }
 },
 {
@@ -648,7 +1365,8 @@
     "slug": "python",
     "thumbnail": "course_thumbnails/DALLE_2023-05-05_00.43.23_-_python_course_thumbnail.png",
     "overview": "Python course",
-    "status": "Draft"
+    "status": "Draft",
+    "students": []
   }
 },
 {
@@ -656,14 +1374,15 @@
   "pk": 10,
   "fields": {
     "created": "2023-05-04T22:46:19.528Z",
-    "updated": "2023-05-04T22:46:19.528Z",
+    "updated": "2023-05-26T07:30:44.979Z",
     "owner": 2,
     "subject": 1,
     "title": "Django",
     "slug": "django",
     "thumbnail": "course_thumbnails/DALLE_2023-05-05_00.44.50_-_django_video_course_youtube_style_thumbnail.png",
     "overview": "Django course",
-    "status": "Draft"
+    "status": "Draft",
+    "students": []
   }
 },
 {
@@ -671,14 +1390,15 @@
   "pk": 11,
   "fields": {
     "created": "2023-05-04T22:46:40.484Z",
-    "updated": "2023-05-04T22:46:40.484Z",
+    "updated": "2023-05-26T07:30:33.087Z",
     "owner": 2,
     "subject": 2,
     "title": "Economics",
     "slug": "economics",
     "thumbnail": "course_thumbnails/DALLE_2023-05-05_00.45.37_-_economics_video_course_youtube_style_thumbnail.png",
     "overview": "Economics course",
-    "status": "Draft"
+    "status": "Draft",
+    "students": []
   }
 },
 {
@@ -778,11 +1498,138 @@
   }
 },
 {
+  "model": "learning.module",
+  "pk": 19,
+  "fields": {
+    "created": "2023-05-06T22:06:13.166Z",
+    "updated": "2023-05-06T22:06:13.166Z",
+    "course": 11,
+    "title": "bla bla",
+    "description": "",
+    "order": 4
+  }
+},
+{
+  "model": "learning.content",
+  "pk": 3,
+  "fields": {
+    "created": "2023-05-07T10:27:54.120Z",
+    "updated": "2023-05-07T10:27:54.120Z",
+    "module": 13,
+    "content_type": 10,
+    "object_id": 3,
+    "order": 0
+  }
+},
+{
+  "model": "learning.content",
+  "pk": 4,
+  "fields": {
+    "created": "2023-05-07T10:29:43.031Z",
+    "updated": "2023-05-07T10:29:43.031Z",
+    "module": 14,
+    "content_type": 12,
+    "object_id": 1,
+    "order": 0
+  }
+},
+{
+  "model": "learning.content",
+  "pk": 5,
+  "fields": {
+    "created": "2023-05-07T10:29:56.795Z",
+    "updated": "2023-05-07T10:29:56.795Z",
+    "module": 14,
+    "content_type": 10,
+    "object_id": 4,
+    "order": 1
+  }
+},
+{
+  "model": "learning.content",
+  "pk": 7,
+  "fields": {
+    "created": "2023-05-07T10:35:00.761Z",
+    "updated": "2023-05-07T10:35:00.761Z",
+    "module": 15,
+    "content_type": 13,
+    "object_id": 1,
+    "order": 1
+  }
+},
+{
+  "model": "learning.content",
+  "pk": 8,
+  "fields": {
+    "created": "2023-05-18T21:17:05.139Z",
+    "updated": "2023-05-18T21:17:05.139Z",
+    "module": 16,
+    "content_type": 10,
+    "object_id": 5,
+    "order": 0
+  }
+},
+{
+  "model": "learning.text",
+  "pk": 3,
+  "fields": {
+    "created": "2023-05-07T10:27:54.116Z",
+    "updated": "2023-05-07T10:27:54.116Z",
+    "owner": 2,
+    "title": "this is 1 text",
+    "content": "this is 1 textthis is 1 textthis is 1 textthis is 1 text"
+  }
+},
+{
+  "model": "learning.text",
+  "pk": 4,
+  "fields": {
+    "created": "2023-05-07T10:29:56.787Z",
+    "updated": "2023-05-07T10:29:56.787Z",
+    "owner": 2,
+    "title": "python 2",
+    "content": "python 2python 2python 2python 2python 2python 2python 2python 2python 2"
+  }
+},
+{
+  "model": "learning.text",
+  "pk": 5,
+  "fields": {
+    "created": "2023-05-18T21:17:05.132Z",
+    "updated": "2023-05-18T21:17:05.132Z",
+    "owner": 2,
+    "title": "bla",
+    "content": "bla"
+  }
+},
+{
+  "model": "learning.video",
+  "pk": 1,
+  "fields": {
+    "created": "2023-05-07T10:29:43.025Z",
+    "updated": "2023-05-07T10:29:43.025Z",
+    "owner": 2,
+    "title": "python 1",
+    "url": "https://www.youtube.com/watch?v=YYXdXT2l-Gg"
+  }
+},
+{
+  "model": "learning.file",
+  "pk": 1,
+  "fields": {
+    "created": "2023-05-07T10:35:00.753Z",
+    "updated": "2023-05-07T10:35:00.753Z",
+    "owner": 2,
+    "title": "tutor docks",
+    "other_file": "files/Tutor.docx"
+  }
+},
+{
   "model": "users.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$jxPR5OarEqQYsLTu8mVOt2$YFt4Nbwl4/oSKr+DPb7WddKW7y9bCE3tRwIMdylkD8g=",
-    "last_login": "2023-05-04T22:57:02.530Z",
+    "last_login": "2023-05-26T07:30:24.241Z",
     "is_superuser": true,
     "username": "mateusz",
     "first_name": "",
@@ -792,7 +1639,8 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:31:31Z",
     "groups": [
-      1
+      1,
+      2
     ],
     "user_permissions": []
   }
@@ -802,7 +1650,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$390000$xQbNr5mJQ4mV1unXDb0gY5$Lexh7JVyw+0ihFYIDc8h0jupw0HUF2U0uxVlUNaLsQ8=",
-    "last_login": "2023-05-04T22:56:52.041Z",
+    "last_login": "2023-05-26T07:30:06.484Z",
     "is_superuser": false,
     "username": "user01",
     "first_name": "",
@@ -812,7 +1660,8 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:32:08Z",
     "groups": [
-      1
+      1,
+      2
     ],
     "user_permissions": []
   }
@@ -830,8 +1679,11 @@
     "email": "use@user.pl",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-03-27T20:32:24.752Z",
-    "groups": [],
+    "date_joined": "2023-03-27T20:32:24Z",
+    "groups": [
+      1,
+      2
+    ],
     "user_permissions": []
   }
 },
@@ -850,7 +1702,8 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:32:45Z",
     "groups": [
-      1
+      1,
+      2
     ],
     "user_permissions": []
   }
@@ -870,7 +1723,8 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:33:00Z",
     "groups": [
-      1
+      1,
+      2
     ],
     "user_permissions": []
   }
@@ -890,7 +1744,8 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:33:24Z",
     "groups": [
-      1
+      1,
+      2
     ],
     "user_permissions": []
   }
@@ -908,8 +1763,10 @@
     "email": "student@student.pl",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-03-27T20:33:49.904Z",
-    "groups": [],
+    "date_joined": "2023-03-27T20:33:49Z",
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 },
@@ -928,7 +1785,7 @@
     "is_active": true,
     "date_joined": "2023-03-27T20:34:03Z",
     "groups": [
-      1
+      2
     ],
     "user_permissions": []
   }
@@ -946,8 +1803,10 @@
     "email": "student@student.pl",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-03-27T20:35:11.252Z",
-    "groups": [],
+    "date_joined": "2023-03-27T20:35:11Z",
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 },
@@ -964,8 +1823,10 @@
     "email": "student@student.pl",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-03-27T20:35:30.264Z",
-    "groups": [],
+    "date_joined": "2023-03-27T20:35:30Z",
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 },
@@ -982,8 +1843,10 @@
     "email": "student@student.pl",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-03-27T20:35:51.896Z",
-    "groups": [],
+    "date_joined": "2023-03-27T20:35:51Z",
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 },

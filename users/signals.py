@@ -16,15 +16,22 @@ def create_profile(sender, instance, created, **kwargs):
 		Profile.objects.create(user=instance)
 
 
-teacher_created = dispatch.Signal()
+user_created = dispatch.Signal()
 
 
-@receiver(teacher_created)
-def add_to_teacher_group(sender, instance, is_teacher, **kwargs):
+@receiver(user_created)
+def add_to_teacher_group(sender, 
+			 instance, 
+			 is_student, 
+			 is_teacher, 
+			 **kwargs):
 	"""
 	Adds to the group Teachers if teacher boolean field
 	filled on registration.
 	"""
+	if is_student:
+		my_group = Group.objects.get(name='Students') 
+		my_group.user_set.add(instance)
 	if is_teacher:
 		my_group = Group.objects.get(name='Teachers') 
 		my_group.user_set.add(instance)

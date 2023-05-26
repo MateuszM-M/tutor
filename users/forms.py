@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 
 from .models import Profile
-from .signals import teacher_created
+from .signals import user_created
 
 
 class UserLoginForm(AuthenticationForm):
@@ -81,9 +81,11 @@ class RegisterForm(forms.ModelForm):
         """Overrides save to set password and send signal"""
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
+
         if commit:
             user.save()
-            teacher_created.send(sender='user_created',
+            user_created.send(sender='user_created',
+                                 is_student=self.cleaned_data['is_student'],
                                  is_teacher=self.cleaned_data['is_teacher'],
                                  instance=user)
         return user
