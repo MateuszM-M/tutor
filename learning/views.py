@@ -141,16 +141,27 @@ class CourseDetailView(OwnerCourseMixin, DetailView):
     """
     template_name = 'learning/student/course_overview.html'
 
+    def can_enroll(self):
+        """
+        Checks if user can enroll to a course
+        """
+        can_list = [
+            self.request.user.is_authenticated,
+            self.request.user is not self.object.owner,
+            "Students" in self.request.user.groups.all(),
+            self.object not in self.request.user.courses_joined.all(),
+            ]
+        return all(can_list)
+
     def get_context_data(self, **kwargs):
         """
         Adds profile to context to make it accessible from templates.
         """
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context.update({'enroll_form': CourseEnrollForm(
-            initial={'course': self.object}),
-            'title': self.object.title,
-            'card_width': 8
-            })
+        if self.can_enroll(): 
+            context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
+
+        context.update({'title': self.object.title, 'card_width': 8})
 
         return context
 

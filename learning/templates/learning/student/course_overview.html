@@ -10,20 +10,18 @@
     <p class="m-2">Title: {{ object.title }}</p>
     <p class="m-2">Overview: {{ object.overview }}</p>
         <div class="text-center">
+            {% if enroll_form %}
+                <form action="{% url 'learning:student_enroll_course' %}" method="post">
+                    {{ enroll_form }}
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-outline-primary" value="Enroll now">
+                </form>
+            {% endif %}
 
-        {% if request.user.is_authenticated %}
-            <form action="{% url 'learning:student_enroll_course' %}" method="post">
-                {{ enroll_form }}
-                {% csrf_token %}
-                <input type="submit" class="btn btn-outline-primary" value="Enroll now">
-            </form>
-        {% else %}
-            <a href="{% url 'learning:student_registration' %}" class="button">
-                Register to buy this course.
-            </a>
-        {% endif %}
-        <p>Author:</p>
-        <a href="{% url 'users:profile' object.owner.profile.slug %}">{{object.owner.username}}</a>
-
+            <div class="pt-3">
+                <p>Author:</p>
+                <a href="{% url 'users:profile' object.owner.profile.slug %}">{{object.owner.username}}</a>
+            </div>
+        </div>
 {% endblock %}
 
