@@ -149,11 +149,16 @@ class CourseDetailView(DetailView):
         groups_list = list(
             [i['name'] for i in self.request.user.groups.all().values()])
         
+        if self.request.user.is_authenticated:
+            enrolled_courses = self.request.user.courses_joined.all()
+        else:
+            enrolled_courses = list()
+        
         can_list = [
             self.request.user.is_authenticated,
             self.request.user.pk is not self.object.owner.pk,
             "Students" in groups_list,
-            self.object not in self.request.user.courses_joined.all(),
+            self.object not in enrolled_courses,
             ]
         return all(can_list)
 
