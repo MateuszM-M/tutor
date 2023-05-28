@@ -14,7 +14,7 @@ from django_filters.views import FilterView
 from .filters import CourseFilter
 from .forms import CourseEnrollForm, CreateUpdateCourseForm, ModuleFormSet
 from .models import Content, Course, Module, Subject
-from .permissions import TeacherRequiredMixin
+from .permissions import GroupRequiredMixin
 
 
 class OwnerMixin(object):
@@ -69,12 +69,13 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     template_name = 'learning/dashboard.html'
 
 
-class TeacherDashboard(TeacherRequiredMixin,
+class TeacherDashboard(GroupRequiredMixin,
                        OwnerMixin,
                        CourseListView):
     """
     A class to represent teacher dashboard view.
     """
+    group_required = "Teachers"
 
     def get_context_data(self, *args, **kwargs):
         context = super(TeacherDashboard, self).get_context_data(**kwargs)
@@ -382,10 +383,11 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
                             args=[self.course.slug])
     
 
-class StudentDashboard(LoginRequiredMixin, CourseListView):
+class StudentDashboard(GroupRequiredMixin, CourseListView):
     """
     A class to reprsent course list student enrolled to.
     """
+    group_required = "Students"
 
     def get_queryset(self):
         """
