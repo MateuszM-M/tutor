@@ -12,7 +12,7 @@
             </div>
 
             <p class="mb-1">{{ course.overview }}</p>
-            <small>100$</small>
+            {% comment %} <small>100$</small> {% endcomment %}
         </div>
     </a>
     
@@ -25,10 +25,16 @@
             <div class="text-center mb-2 d-grid col-12">
                 <a href="{% url 'learning:delete_course' course.slug %}" class="btn btn-outline-danger" >delete</a>
             </div>
+            <div class="text-center mb-2 d-grid col-12">
+                <a href="{% if course.modules.first %}{% url 'learning:module_content_list' course.modules.first.id %}{% else %}{% url 'learning:course_module_update' course.id %}{% endif %}" class="btn btn-outline-dark">modules</a>
+            </div>
+            
         {% endif %}
-        <div class="text-center mb-2 d-grid col-12">
-            <a href="{% url 'learning:student_course_detail' course.slug %}" class="btn btn-outline-success" >learn</a>
-        </div>
+        {% if course in request.user.courses_joined.all %}
+            <div class="text-center mb-2 d-grid col-12">
+                <a href="{% url 'learning:student_course_detail' course.slug %}" class="btn btn-outline-success">learn</a>
+            </div>
+        {% endif %}
     </div>
 
 </div>

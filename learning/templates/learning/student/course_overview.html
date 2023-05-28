@@ -17,7 +17,9 @@
                     <input type="submit" class="btn btn-outline-primary" value="Enroll now">
                 </form>
             {% endif %}
-
+            {% if object in request.user.courses_joined.all %}
+                <a href="{% url 'learning:student_course_detail' course.slug %}" class="btn btn-outline-success" >learn</a>
+            {% endif %}
             <div class="pt-3">
                 <p>Author:</p>
                 <a href="{% url 'users:profile' object.owner.profile.slug %}">{{object.owner.username}}</a>

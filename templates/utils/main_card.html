@@ -3,7 +3,7 @@
 
 {% block content %}
 
-{% if course %}
+{% if course and modules %}
     <div class="container-fluid">   
         <div class="row flex-nowrap"> 
             <div class="col-auto px-0">
@@ -14,8 +14,8 @@
                             <a href="{% url 'learning:course_module_update' course.id %}" class="btn btn-outline-primary m-1">Manage modules</a>
                         {% endif %}
 
-                        {% for module in course.modules.all %}
-                            <a href="{% url 'learning:module_content_list' module.id %}" class="list-group-item border-end-0 d-inline-block text-truncate">{{ module.title }}</a>
+                        {% for m in modules.all %}
+                            <a href="{% if course.owner == request.user %}{% url 'learning:module_content_list' m.id %}{% else %}{% url 'learning:student_course_detail_module' course.slug m.id %}{% endif %}" class="list-group-item border-end-0 d-inline-block text-truncate {% if m == module %}list-group-item-primary{% endif %}">{{ m.title }}</a>
                         {% empty %}
                             <p class="m-1">No modules</p>
                         {% endfor %}

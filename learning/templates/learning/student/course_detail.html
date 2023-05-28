@@ -6,21 +6,6 @@
 
 {% block card_content %}
 
-{% comment "For future use in side navbar" %} 
-    <div class="contents">
-        <h3>Moduły</h3>
-        <ul class="modules">
-            {% for m in object.modules.all %}
-                <li data-id="{{ m.id }} {% if m == module %} class='selected' {% endif %}" >
-                    <a href="{% url 'learning:student_course_detail_module' object.slug m.id %}">{{ m.title }}</a>
-                </li>
-            {% empty %}
-                <li>Brak modułów</li>
-            {% endfor %}
-        </ul>
-    </div>
-     {% endcomment %}
-
     <div class="module">
         {% for content in module.contents.all %}
             {% with item=content.item %}

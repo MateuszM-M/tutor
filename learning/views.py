@@ -134,21 +134,25 @@ class CourseUpdateView(PermissionRequiredMixin,
     extra_context = {'submit_value': 'Update', 'title': 'Update Course'}
 
 
-class CourseDetailView(OwnerCourseMixin, DetailView):
+class CourseDetailView(DetailView):
     """
     A class to represent detail course view for user that
     is interested in buying a course.
     """
+    model = Course
     template_name = 'learning/student/course_overview.html'
 
     def can_enroll(self):
         """
         Checks if user can enroll to a course
         """
+        groups_list = list(
+            [i['name'] for i in self.request.user.groups.all().values()])
+        
         can_list = [
             self.request.user.is_authenticated,
-            self.request.user is not self.object.owner,
-            "Students" in self.request.user.groups.all(),
+            self.request.user.pk is not self.object.owner.pk,
+            "Students" in groups_list,
             self.object not in self.request.user.courses_joined.all(),
             ]
         return all(can_list)
@@ -159,7 +163,8 @@ class CourseDetailView(OwnerCourseMixin, DetailView):
         """
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         if self.can_enroll(): 
-            context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
+            context['enroll_form'] = CourseEnrollForm(
+                initial={'course': self.object})
 
         context.update({'title': self.object.title, 'card_width': 8})
 
@@ -316,8 +321,8 @@ class ModuleContentListView(TemplateResponseMixin, View):
                                    id=module_id,
                                    course__owner=request.user)
         context = {'module': module,
-                   'course': module.course,
                    "title": module.title,
+                   'modules': module.course.modules,
                    "course": module.course}
         return self.render_to_response(context)
     
@@ -428,5 +433,7 @@ class StudentCourseDetailView(DetailView):
 
         module = context['module']
         context.update({'title': module.title,
-                        'card_width': 8})
+                        'card_width': 8,
+                        'course': course,
+                        'modules': course.modules})
         return context
