@@ -6,11 +6,11 @@
 
 {% block card_content %}
 
-                    <form action="" method="post">
-                        {{ formset.as_p }}
-                        {{ formset.managemet_form }}
-                        {% csrf_token %}
-                        <input type="submit" class="btn btn-outline-primary m-3" value="save">
-                    </form>
+    <form action="" method="post">
+        {{ formset.as_p }}
+        {{ formset.managemet_form }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-primary m-3" value="save">
+    </form>
 
 {% endblock card_content %}

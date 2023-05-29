@@ -7,10 +7,12 @@
 
 {% block card_content %}
 
-                        <div class="form-floating my-2">
-                            {% csrf_token %}
-                            <p>Are you sure you want to delete "{{ object.title }}"?</p>
-                            <input class="w-100 btn btn-danger mt-3" type="submit" value="delete">
-                        </div>
+    <form action="" method="POST">
+        <div class="form-floating my-2">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ object.title }}"?</p>
+            <input class="w-100 btn btn-danger mt-3" type="submit" value="delete">
+        </div>
+    </form>
 
 {% endblock %}
